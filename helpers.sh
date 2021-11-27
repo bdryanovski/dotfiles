@@ -13,7 +13,12 @@ function fileExist() {
   return 0 
 }
 
-
+function isMacOS() {
+  if [[ $OSTYPE == 'darwin'* ]]; then
+    return 1
+  fi
+  return 0
+}
 
 function checked() {
   echo "✅ $1"
