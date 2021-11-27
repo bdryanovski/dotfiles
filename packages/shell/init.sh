@@ -21,6 +21,12 @@ shellConfig="$HOME/.zshrc"
 shellConfigBackup="$shellConfig.backup"
 package="$PWD/$(dirname "$0")"
 
+brewbin="brew"
+
+if ! commandExist $brewbin; then
+  bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  checked "Brew is installed"
+fi
 
 if fileExist "$HOME/.oh-my-zsh/oh-my-zsh.sh"; then
   checked "OH MyZSH is installed - skip this step"
