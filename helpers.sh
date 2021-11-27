@@ -60,3 +60,7 @@ function helpline() {
 function helpend() {
   echo "+------------------------------+"
 }
+
+function helptext() {
+  echo "    $1"
+}
