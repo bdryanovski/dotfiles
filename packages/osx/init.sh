@@ -269,7 +269,7 @@ function infoblock() {
 }
 
 
-if [[ $OSTYPE == 'darwin'* ]]; then
+if ! isMacOS; then
   banner
 
   if [ "$1" == "--help" ]; then
