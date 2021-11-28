@@ -16,8 +16,6 @@ function banner() {
   echo "  "
 }
 
-banner
-
 gitbin='git'
 package="$PWD/$(dirname "$0")"
 gitconfig=$HOME/.gitconfig
@@ -84,6 +82,6 @@ if [ "$1" == "--version" ]; then
   exit;
 fi
 
+banner
 setup
-
 
