@@ -2,7 +2,7 @@
 
 source ./helpers.sh
 
-VERSION='1.0.1'
+VERSION='1.0.8'
 
 # Run all packages one by one untill they all are done.
 function all() {

@@ -2,7 +2,7 @@
 
 source ./helpers.sh
 
-VERSION="1.0.0"
+VERSION="1.0.1"
 
 function banner() {
  echo "      _          _ _ " 
@@ -43,6 +43,8 @@ function setup() {
   cp "$package/files/zshrc" "$shellConfig"
   checked "ZSH configuration is created $shellConfig"
 
+  checked "Install additional packages used in the above configurations"
+  brew install exa
 
   packagedone "Shell is configure and ready to use."
 }
