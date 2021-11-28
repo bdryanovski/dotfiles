@@ -2,15 +2,34 @@
 
 source ./helpers.sh
 
-VERSION='1.0.0'
+VERSION='1.0.1'
 
-function start() {
-  infod "Packages: "
-  for i in $(ls -d packages/*); do 
+# Run all packages one by one untill they all are done.
+function all() {
+  infod "Starting to install packages one by one: "
+  for i in packages/*; do 
     if test -f "${i%%/}/init.sh"; then
       bash "${i%%/}/init.sh"
     fi
   done
+}
+
+
+function setup() {
+  # Make sure to ask the hard question 
+  while true; do
+    read -p "🤌  Do you wish to installall dotfiles? [yn]: " yn
+    case $yn in
+      [Yy]* ) all; exit; break;;
+      [Nn]* ) exit;;
+      * ) echo "Please answer yes or no.";;
+    esac
+  done
+}
+
+
+function version() {
+  helptext "Package version: $VERSION"
 }
 
 function banner() {
@@ -23,36 +42,55 @@ function banner() {
   echo "░███ ░███ ░███ ░███  ░███ ███  ░███      ░███  ░███ ░███░░░   ░░░░███ ░░░      "
   echo "░░████████░░██████   ░░█████   █████     █████ █████░░██████  ██████   ███     "
   echo " ░░░░░░░░  ░░░░░░     ░░░░░   ░░░░░     ░░░░░ ░░░░░  ░░░░░░  ░░░░░░   ░░░      "
-  echo "                                                                   -- v$VERSION"
+  echo "                                                   -- one tool to rule them all"
 }
 
-# Init process
-
+# Always show the main banner
 banner;
 
 if test -z "$1"; then
-
-  while true; do
-    read -p "🤌  Do you wish to install dotfiles? [yn]: " yn
-    case $yn in
-      [Yy]* ) start; exit; break;;
-      [Nn]* ) exit;;
-      * ) echo "Please answer yes or no.";;
-    esac
-  done
-
+  # No arguments are passed
+  setup
 else
 
+  # First argument is --help
   if [ "$1" == "--help" ]; then
-    echo "Need to write help"
+    helptext " "
+    helptext "Install, setup and sync dotfiles - grouped by packages"
+    helptext " "
+    helptext "Arguments: "
+    helptext "  --help      - this documentation"
+    helptext "  --version   - dotfiles version"
+    helptext "  --packages  - list of all available packages"
+    helptext "  "
+    helptext "! Running it without any argument or package name will ask you to install everything."
+    helptext " "
+    helptext "A specific package could be run by using there name for example for package named 'shell' :"
+    helptext "  "
+    helptext "  bash ./init.sh shell"
+    helptext "  "
+    helptext "All of the packages support additional arguments to provide information for themself"
+    helptext "  --help     - package description and help information"
+    helptext "  --version  - package version"
+    helptext "  "
+    helptext "Any additional arguments will be found in the --help for the specific package"
+    helptext "  "
+    exit;
   fi
 
+  if [ "$1" == "--version" ]; then
+    version
+    exit
+  fi
+
+  # First argument is --packages
   if [ "$1" == "--packages" ]; then
 
-    infod "Packages: "
-    for i in $(ls -d packages/*); do 
+    infod "Available packages to run: "
+    for i in packages/*; do 
       if test -f "${i%%/}/init.sh"; then
         echo "  ${i%%/}"
+        bash "${i%%/}/init.sh" --help
       fi
     done
 
@@ -62,11 +100,9 @@ else
     exit
   fi
 
+  # First argument is one of the packages name
   if test -f "packages/$1/init.sh"; then
     bash "packages/$1/init.sh" $2
   fi
 fi
-
-
-
 

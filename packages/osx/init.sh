@@ -270,8 +270,6 @@ function infoblock() {
 
 
 if ! isMacOS; then
-  banner
-
   if [ "$1" == "--help" ]; then
     help
     exit;
@@ -282,6 +280,7 @@ if ! isMacOS; then
     exit;
   fi
 
+  banner
   setup
 fi
 
