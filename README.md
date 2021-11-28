@@ -1,4 +1,4 @@
-# Dotfiles
+# dotfiles
 
 Personal dotfile script to setup and maintain my configuration across multiple devices
 
@@ -29,6 +29,12 @@ bash init.sh shell
 ```
 
 The above command will run only the `shell` package and nothing more.
+
+### Helpers
+
+Helpers is a collections of useful functions that are used across packages - this way a single change could be apply to multiple files, keep everything the same, and simplify a lot of clunky BASH functionality.
+
+
 
 
 ### Packages
