@@ -64,7 +64,7 @@ function setup() {
 
   
   infoblock "Clear some files to free space"
-  sudo rm /Private/var/vm/sleepimage
+  sudo rm -rf /Private/var/vm/sleepimage
   sudo touch /Private/var/vm/sleepimage
   sudo chflags uchg /Private/var/vm/sleepimage
 
@@ -265,7 +265,7 @@ function version() {
 
 
 function infoblock() {
-  echo "⚙️   $1"
+  echo "  ⚙️   $1"
 }
 
 
