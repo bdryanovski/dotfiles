@@ -2,7 +2,7 @@
 
 source ./helpers.sh
 
-VERSION="1.0.0"
+VERSION="1.0.1"
 
 function banner() {
   echo " __      _______ __  __ " 
@@ -19,8 +19,6 @@ function banner() {
 nvimbin='nvim'
 vimbin='vim'
 brewbin='brew'
-nvmbin="nvm"
-nodeVersion="16.13.0"
 nvimconfigdir="$HOME/.config/nvim"
 
 function setup() {
@@ -54,20 +52,6 @@ function setup() {
     checked "NeoVim is already setup - backuping it before continue"
     cp -R "$nvimconfigdir" "$nvimconfigdir.backup"
   fi
-
-  if ! commandExist $nvmbin; then
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
-    checked "NVM installed"
-  fi
-
-  nvm install $nodeVersion
-
-  npm install -g typescript typescript-language-server diagnostic-languageserver
 
   brew install exa
 
