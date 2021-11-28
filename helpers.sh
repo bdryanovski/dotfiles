@@ -30,9 +30,7 @@ function missing() {
 
 function infod() {
   echo "   "
-  echo "+👇 Info ----------+"
-  echo "| $1"
-  echo "+------------------------------+"
+  echo "  🤌  $1"
   echo "  "
 }
 

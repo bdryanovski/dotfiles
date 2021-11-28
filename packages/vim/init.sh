@@ -16,8 +16,6 @@ function banner() {
   echo "  "
 }
 
-banner
-
 nvimbin='nvim'
 vimbin='vim'
 brewbin='brew'
@@ -99,4 +97,5 @@ if [ "$1" == "--version" ]; then
   exit;
 fi
 
+banner
 setup

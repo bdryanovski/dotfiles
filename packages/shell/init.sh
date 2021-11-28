@@ -16,9 +16,6 @@ function banner() {
  echo "  "
 }
 
-
-banner
-
 shellConfig="$HOME/.zshrc"
 shellConfigBackup="$shellConfig.backup"
 package="$PWD/$(dirname "$0")"
@@ -50,7 +47,6 @@ function setup() {
   packagedone "Shell is configure and ready to use."
 }
 
-
 function help() {
   helptext " "
   helptext "Description:"
@@ -74,5 +70,6 @@ if [ "$1" == "--version" ]; then
   exit;
 fi
 
+banner
 setup
 
