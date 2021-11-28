@@ -2,7 +2,7 @@
 
 source ./helpers.sh
 
-VERSION="1.0.1"
+VERSION="1.0.2"
 
 function banner() {
   echo " __      _______ __  __ " 
@@ -53,7 +53,8 @@ function setup() {
     cp -R "$nvimconfigdir" "$nvimconfigdir.backup"
   fi
 
-  brew install exa
+  checked "Installing TypeScript and some additional packages required for type complition"
+  npm install -g typescript typescript-language-server diagnostic-languageserver
 
   packagedone "Editors are ready to be used."
 }

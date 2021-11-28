@@ -28,35 +28,18 @@ function missing() {
   echo "❌ $1"
 }
 
+function skip() {
+  echo "🥸  $1"
+}
+
 function infod() {
   echo "   "
   echo "  🤌  $1"
   echo "  "
 }
 
-function warnd() {
-  echo "WARN: $1"
-}
-
-function errd() {
-  echo "ERR: $1"
-}
-
 function packagedone() {
   echo "🧁 $1"
-}
-
-function helpblock() {
-  echo "  "
-  echo "🥸  !! Help ------------+"
-}
-
-function helpline() {
-  echo "| $1"
-}
-
-function helpend() {
-  echo "+------------------------------+"
 }
 
 function helptext() {

@@ -37,9 +37,6 @@ function setup() {
     checked "Installing Node version: $nodeVersion and making it default."
   fi
 
-  checked "Installing TypeScript and some additional packages"
-  npm install -g typescript typescript-language-server diagnostic-languageserver
-
   packagedone "NodeJS is ready to be use."
 }
 
