@@ -65,6 +65,17 @@ function setup() {
   packagedone "Editors are ready to be used."
 }
 
+function sync() {
+  warn "Syncking files back to the dotfiles could break it"
+
+  askQuestion "Are you sure that you want to continue?"
+
+  checked "Sync ~/.config/.nvim"
+  cp -f "$nvmconfigdir" "$package/files/"
+
+  packagedone "Shell is sync back to dotfiles - require review and commit."
+}
+
 function help() {
   helptext " "
   helptext "Description:"
@@ -85,6 +96,11 @@ fi
 
 if [ "$1" == "--version" ]; then
   version
+  exit;
+fi
+
+if [ "$1" == "--sync" ]; then 
+  sync
   exit;
 fi
 

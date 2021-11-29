@@ -49,6 +49,17 @@ function setup() {
   packagedone "Shell is configure and ready to use."
 }
 
+function sync() {
+  warn "Syncking files back to the dotfiles could break it"
+
+  askQuestion "Are you sure that you want to continue?"
+
+  checked "Sync .zshrc"
+  cp -f "$shellConfig" "$package/files/zshrc"
+
+  packagedone "Shell is sync back to dotfiles - require review and commit."
+}
+
 function help() {
   helptext " "
   helptext "Description:"
@@ -69,6 +80,11 @@ fi
 
 if [ "$1" == "--version" ]; then
   version
+  exit;
+fi
+
+if [ "$1" == "--sync" ]; then
+  sync
   exit;
 fi
 

@@ -62,7 +62,6 @@ function setup() {
   infoblock "Disable hybernation - speedup entering sleep mode"
   sudo pmset -a hibernatemode 0
 
-  
   infoblock "Clear some files to free space"
   sudo rm -rf /Private/var/vm/sleepimage
   sudo touch /Private/var/vm/sleepimage
@@ -70,7 +69,6 @@ function setup() {
 
   infoblock "Disable motion sensor - SSD reasons"
   sudo pmset -a sms 0
-
 
   infoblock "Setup trackpad"
   defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true

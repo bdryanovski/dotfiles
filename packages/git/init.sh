@@ -74,6 +74,17 @@ function version() {
   helptext "Package version: $VERSION"
 }
 
+function sync() {
+  warn "Syncking files back to the dotfiles could break it"
+
+  askQuestion "Are you sure that you want to continue?" 
+
+  checked "Sync .gitconfig"
+  cp -f "$gitconfig" "$package/files/gitconfig" 
+
+  packagedone "Git is sync back to dotfiles - require review and commit."
+}
+
 
 if [ "$1" == "--help" ]; then
   help
@@ -84,6 +95,12 @@ if [ "$1" == "--version" ]; then
   version
   exit;
 fi
+
+if [ "$1" == "--sync" ]; then
+  sync
+  exit;
+fi
+
 
 banner
 setup

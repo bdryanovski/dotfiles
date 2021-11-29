@@ -2,7 +2,7 @@
 
 source ./helpers.sh
 
-VERSION='1.0.8'
+VERSION='1.1.8'
 
 # Run all packages one by one untill they all are done.
 function all() {
@@ -62,6 +62,7 @@ else
     helptext "  --help      - this documentation"
     helptext "  --version   - dotfiles version"
     helptext "  --packages  - list of all available packages"
+    helptext "  --sync      - copy configrations back to dotfiles (require git push to share)"
     helptext "  "
     helptext "! Running it without any argument or package name will ask you to install everything."
     helptext " "
