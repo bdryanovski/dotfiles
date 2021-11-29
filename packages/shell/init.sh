@@ -2,7 +2,7 @@
 
 source ./helpers.sh
 
-VERSION="1.0.1"
+VERSION="1.1.0"
 
 function banner() {
  echo "      _          _ _ " 
@@ -44,8 +44,14 @@ function setup() {
     cp -f "$shellConfig" "$shellConfigBackum"
   fi
 
+  mkdir "$HOME/.zshrc_custom"
+
   cp "$package/files/zshrc" "$shellConfig"
   checked "ZSH configuration is created $shellConfig"
+
+  checked "Creating some additional files"
+  cp "$package/files/alias.zsh" "$HOME/.zshrc_custom"
+  cp "$package/files/functions.zsh" "$HOME/.zshrc_custom"
 
   checked "Install additional packages used in the above configurations"
   brew install exa
@@ -60,6 +66,12 @@ function sync() {
 
   checked "Sync .zshrc"
   cp -f "$shellConfig" "$package/files/zshrc"
+
+  checked "Sync alias.zsh"
+  cp -f "$HOME/.zshrc_custom/alias.zsh" "$package/files/alias.zsh"
+
+  checked "Sync functions.zsh"
+  cp -f "$HOME/.zshrc_custom/functions.zsh" "$package/files/functions.zsh"
 
   packagedone "Shell is sync back to dotfiles - require review and commit."
 }
