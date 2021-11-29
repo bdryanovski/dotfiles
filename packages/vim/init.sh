@@ -5,7 +5,7 @@ source ./helpers.sh
 VERSION="1.0.2"
 
 function banner() {
-  echo " __      _______ __  __ " 
+  echo " __      _______ __  __ "
   echo " \ \    / /_   _|  \/  |"
   echo "  \ \  / /  | | | \  / |"
   echo "   \ \/ /   | | | |\/| |"
@@ -20,17 +20,21 @@ nvimbin='nvim'
 vimbin='vim'
 brewbin='brew'
 nvimconfigdir="$HOME/.config/nvim"
+package="$PWD/$(dirname "$0")"
 
 function setup() {
 
+  if ! commandExist $brewbin; then
+    missing "brew is missing need to install it before that"
+    exit;
+  fi
+
   if commandExist $nvimbin; then
     checked "NeoVim is installed"
-  else
 
-    if ! commandExist $brewbin; then
-      missing "brew is missing need to install it before that"
-      exit;
-    fi
+    checked "Try to update NeoVim with the latest version from Homebrew"
+    brew upgrade neovim tree-sitter luajit
+  else
 
     brew install tree-sitter luajit neovim
 
@@ -47,11 +51,13 @@ function setup() {
     missing "Vim is not installed but I prefer nvim so this is on you/me"
   fi
 
-
   if fileExist "$nvimconfigdir/init.vim"; then
     checked "NeoVim is already setup - backuping it before continue"
     cp -R "$nvimconfigdir" "$nvimconfigdir.backup"
   fi
+
+  checked "Setuping NeoVim configuration"
+  cp -R "$package/files/" "$nvimconfigdir"
 
   checked "Installing TypeScript and some additional packages required for type complition"
   npm install -g typescript typescript-language-server diagnostic-languageserver
