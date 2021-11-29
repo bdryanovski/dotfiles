@@ -23,6 +23,10 @@ package="$PWD/$(dirname "$0")"
 brewbin="brew"
 
 function setup() {
+
+  checked "Change the shell to ZSH"
+  chsh -s $(which zsh)
+
   if ! commandExist $brewbin; then
     bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     checked "Brew is installed"
