@@ -32,6 +32,24 @@ function skip() {
   echo "🥸  $1"
 }
 
+function warn() {
+  echo "⚠️  $1"
+}
+
+function askQuestion {
+  local msg=${1}
+  local waitingforanswer=true
+  while ${waitingforanswer}; do
+    read -p "${msg} (hit 'y/Y' to continue, 'n/N' to cancel) " -n 1 ynanswer
+    case ${ynanswer} in
+      [Yy] ) waitingforanswer=false; break;;
+      [Nn] ) echo ""; missing "Operation cancelled as requested!"; exit;;
+      *    ) echo ""; echo "Please answer either yes (y/Y) or no (n/N).";;
+    esac
+  done
+  echo ""
+}
+
 function infod() {
   echo "   "
   echo "  🤌  $1"
