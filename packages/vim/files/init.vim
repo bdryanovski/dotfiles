@@ -1,25 +1,25 @@
 "
 "
-"   ███▄    █ ▓█████  ▒█████   ██▒   █▓ ██▓ ███▄ ▄███▓   
-"   ██ ▀█   █ ▓█   ▀ ▒██▒  ██▒▓██░   █▒▓██▒▓██▒▀█▀ ██▒   
-"  ▓██  ▀█ ██▒▒███   ▒██░  ██▒ ▓██  █▒░▒██▒▓██    ▓██░   
-"  ▓██▒  ▐▌██▒▒▓█  ▄ ▒██   ██░  ▒██ █░░░██░▒██    ▒██    
-"  ▒██░   ▓██░░▒████▒░ ████▓▒░   ▒▀█░  ░██░▒██▒   ░██▒   
-"  ░ ▒░   ▒ ▒ ░░ ▒░ ░░ ▒░▒░▒░    ░ ▐░  ░▓  ░ ▒░   ░  ░   
-"  ░ ░░   ░ ▒░ ░ ░  ░  ░ ▒ ▒░    ░ ░░   ▒ ░░  ░      ░   
-"     ░   ░ ░    ░   ░ ░ ░ ▒       ░░   ▒ ░░      ░      
-"           ░    ░  ░    ░ ░        ░   ░         ░      
-"                                   ░                     
-"   ▄████▄   ▒█████   ███▄    █   █████▒██▓  ▄████ 
+"   ███▄    █ ▓█████  ▒█████   ██▒   █▓ ██▓ ███▄ ▄███▓
+"   ██ ▀█   █ ▓█   ▀ ▒██▒  ██▒▓██░   █▒▓██▒▓██▒▀█▀ ██▒
+"  ▓██  ▀█ ██▒▒███   ▒██░  ██▒ ▓██  █▒░▒██▒▓██    ▓██░
+"  ▓██▒  ▐▌██▒▒▓█  ▄ ▒██   ██░  ▒██ █░░░██░▒██    ▒██
+"  ▒██░   ▓██░░▒████▒░ ████▓▒░   ▒▀█░  ░██░▒██▒   ░██▒
+"  ░ ▒░   ▒ ▒ ░░ ▒░ ░░ ▒░▒░▒░    ░ ▐░  ░▓  ░ ▒░   ░  ░
+"  ░ ░░   ░ ▒░ ░ ░  ░  ░ ▒ ▒░    ░ ░░   ▒ ░░  ░      ░
+"     ░   ░ ░    ░   ░ ░ ░ ▒       ░░   ▒ ░░      ░
+"           ░    ░  ░    ░ ░        ░   ░         ░
+"                                   ░
+"   ▄████▄   ▒█████   ███▄    █   █████▒██▓  ▄████
 "  ▒██▀ ▀█  ▒██▒  ██▒ ██ ▀█   █ ▓██   ▒▓██▒ ██▒ ▀█▒
 "  ▒▓█    ▄ ▒██░  ██▒▓██  ▀█ ██▒▒████ ░▒██▒▒██░▄▄▄░
 "  ▒▓▓▄ ▄██▒▒██   ██░▓██▒  ▐▌██▒░▓█▒  ░░██░░▓█  ██▓
 "  ▒ ▓███▀ ░░ ████▓▒░▒██░   ▓██░░▒█░   ░██░░▒▓███▀▒
-"  ░ ░▒ ▒  ░░ ▒░▒░▒░ ░ ▒░   ▒ ▒  ▒ ░   ░▓   ░▒   ▒ 
-"  ░  ▒     ░ ▒ ▒░ ░ ░░   ░ ▒░ ░      ▒ ░  ░   ░ 
-"  ░        ░ ░ ░ ▒     ░   ░ ░  ░ ░    ▒ ░░ ░   ░ 
-"  ░ ░          ░ ░           ░         ░        ░ 
-"  ░                                               
+"  ░ ░▒ ▒  ░░ ▒░▒░▒░ ░ ▒░   ▒ ▒  ▒ ░   ░▓   ░▒   ▒
+"  ░  ▒     ░ ▒ ▒░ ░ ░░   ░ ▒░ ░      ▒ ░  ░   ░
+"  ░        ░ ░ ░ ▒     ░   ░ ░  ░ ░    ▒ ░░ ░   ░
+"  ░ ░          ░ ░           ░         ░        ░
+"  ░
 "
 "  Personal NeoVim configuration - Bozhidar Dryanovski
 "
@@ -33,7 +33,7 @@
 " ---------------------------------------------------------------------------------------------------------------------
 "
 set expandtab               " converts tabs to white space
-" set relativenumber        " Show relative numbers 
+" set relativenumber        " Show relative numbers
 set hidden
 set showmatch               " show matching
 set ignorecase              " case insensitive
@@ -82,17 +82,17 @@ endif
 
 "
 " ---------------------------------------------------------------------------------------------------------------------
-" Plugins 
+" Plugins
 " ---------------------------------------------------------------------------------------------------------------------
 "
 
 "
-" Make sure to install vim-plug 
+" Make sure to install vim-plug
 "
 
-let data_dir = has('nvim') ? stdpath('data') . '/nvim' : '~/.vim'
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo ' . data_dir . '/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
@@ -112,14 +112,14 @@ doautocmd User PlugLoaded
 
 "
 " Configuration if i'm using neovide
-" 
+"
 source ~/.config/nvim/neovide.vim
 
 syntax enable
 
 "
 " ---------------------------------------------------------------------------------------------------------------------
-" Personal Configuration  
+" Personal Configuration
 " ---------------------------------------------------------------------------------------------------------------------
 "" open new split panes to right and below
 set splitright
@@ -139,6 +139,6 @@ endif
 
 "
 " ---------------------------------------------------------------------------------------------------------------------
-" Mapping and keyboard 
+" Mapping and keyboard
 " ---------------------------------------------------------------------------------------------------------------------
 source ~/.config/nvim/mapping.vim
