@@ -1,3 +1,11 @@
+
+# Colors
+c_green=$(tput setaf 2)
+c_yellow=$(tput setaf 3)
+c_red=$(tput setaf 1)
+c_reset=$(tput sgr0)
+c_dim=$(tput setaf 5)
+
 # Check if command is installed 
 function commandExist() {
   if ! test -x "$(command -v $1)"; then
@@ -21,19 +29,19 @@ function isMacOS() {
 }
 
 function checked() {
-  echo "✅ $1"
+  echo -e "${c_green}✅ $1${c_reset}"
 }
 
 function missing() {
-  echo "❌ $1"
+  echo -e "${c_red}❌ $1${c_reset}"
 }
 
 function skip() {
-  echo "🥸  $1"
+  echo -e "${c_yellow}👋  $1${c_reset}"
 }
 
 function warn() {
-  echo "⚠️  $1"
+  echo -e "${c_yellow}⚠️  $1${c_reset}"
 }
 
 function askQuestion {
@@ -61,5 +69,5 @@ function packagedone() {
 }
 
 function helptext() {
-  echo "    $1"
+  echo "${c_dim}    $1${c_reset}"
 }
