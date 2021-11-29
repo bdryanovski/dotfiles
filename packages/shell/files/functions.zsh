@@ -1,3 +1,27 @@
+function remindme() {
+  local legend="\n
+command | description\n
+------- | -----------
+download | Use curl to download content to the disk
+compress | Compress file or directory 
+extract | Extract a archive
+p | Go to Project directory
+b | Go to Blog directory
+myip | Show me my current IP address
+getNodeSize | Calculate the size of node_modules
+ll | List current directory with icons and more
+l | List current dirctory
+hidedesktop | Hide all icons on the desktop
+showdesktop | Show the desktop icons
+showall | Show all files on the desktop
+hideall | Hide all files on the desktop
+dsclean | Find and remove all .DS_Store files
+
+  "
+  echo $legend | column -t -s \|
+}
+
+#
 # Download something
 function download(){
   curl -O "$1"
