@@ -24,8 +24,10 @@ brewbin="brew"
 
 function setup() {
 
-  checked "Change the shell to ZSH"
-  chsh -s $(which zsh)
+  if ! [ $SHELL == '/bin/zsh' ]; then
+    checked "Change the shell to ZSH"
+    chsh -s $(which zsh)
+  fi
 
   if ! commandExist $brewbin; then
     bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
