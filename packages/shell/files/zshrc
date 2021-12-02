@@ -7,9 +7,10 @@ plugins=(
 )
 
 # Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM=~/.zshrc_custom
+export ZSH_CUSTOM=~/.zshrc_custom
 
 autoload -U promptinit && promptinit
+
 #
 # Make sure that theme is there and set it
 #
@@ -88,6 +89,17 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Start oh-my-zsh`
 #
 source $ZSH/oh-my-zsh.sh
+
+
+#
+# Display motd
+#
+# source "$ZSH_CUSTOM/motd.zsh"
+
+MOTD="$(cat "$ZSH_CUSTOM/logo.txt")"
+
+echo "$MOTD"
+
 #
 # Extend zsh with Syntax Colors
 #
