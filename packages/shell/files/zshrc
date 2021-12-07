@@ -7,16 +7,17 @@ plugins=(
 )
 
 # Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM=~/.zshrc_custom
+export ZSH_CUSTOM=~/.zshrc_custom
 
 autoload -U promptinit && promptinit
+
 #
 # Make sure that theme is there and set it
 #
 if [ ! -d "$ZSH_CUSTOM/themes/spaceship-prompt/" ]
 then
   echo "Installing Spaceship theme ..."
-  git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
+  git clone https://github.com/spaceship-prompt/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
   echo "Linking theme so ZSH will find it ..."
   ln -sf "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme";
 fi
@@ -36,8 +37,7 @@ SPACESHIP_PROMPT_ORDER=(
 
 SPACESHIP_CHAR_SYMBOL=🍺
 SPACESHIP_CHAR_SUFFIX=" "
-SPACESHIP_GIT_SYMBOL=
-SPACESHIP_BATTERY_SHOW=charged
+SPACESHIP_BATTERY_SHOW=true
 SPACESHIP_BATTERY_THRESHOLD=40
 
 #
@@ -89,6 +89,17 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Start oh-my-zsh`
 #
 source $ZSH/oh-my-zsh.sh
+
+
+#
+# Display motd
+#
+# source "$ZSH_CUSTOM/motd.zsh"
+
+MOTD="$(cat "$ZSH_CUSTOM/logo.txt")"
+
+echo "$MOTD"
+
 #
 # Extend zsh with Syntax Colors
 #
