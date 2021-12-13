@@ -31,6 +31,11 @@ function setup() {
   #sudo scutil --set LocalHostName "Bozhidar-MacBook-Air"
   #sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "bdryanovski"
 
+  infoblock "Disabling OSX Gate Keeper"
+  sudo spctl --master-disable
+  sudo defaults write /var/db/SystemPolicy-prefs.plist enabled -string no
+  defaults write com.apple.LaunchServices LSQuarantine -bool false
+
   infoblock "Standby time set to 24hours instead of 1hour"
   sudo pmset -a standbydelay 86400
 
@@ -111,7 +116,7 @@ function setup() {
   defaults write com.apple.finder NewWindowTarget -string "PfDe"
   defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}"
 
-  infoblock "Finder: show some additional icons"
+  infoblock "Finder: show some additional icons like harddrivers and network devices"
   defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
   defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
   defaults write com.apple.finder ShowMountedServersOnDesktop -bool true

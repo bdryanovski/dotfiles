@@ -20,12 +20,18 @@ gitconfig=$HOME/.gitconfig
 gitconfigbackup=$HOME/.gitconfig.backup
 npmbin='npm'
 
+gitname='Bozhidar Dryanovski'
+gitemail='bozhidar.dryanovski@gmail.com'
+
 function setup() {
 
   if commandExist $gitbin; then
     checked "git is already installed on this system"
   else
     missed "git command is not found - trying to install it"
+
+    brew install git
+    checked "Git is installed"
   fi
 
 
@@ -50,6 +56,11 @@ function setup() {
     checked "Installing additional packages require for git"
     npm install -g diff-so-fancy
   fi
+
+  git config --global user.name $gitname
+  git config --global user.email $gitemail
+  checked "Git global configuration set the name and email to $gitname <$gitemail>"
+
 
   helptext " "
   helptext "GPG need manual work so it could run"
