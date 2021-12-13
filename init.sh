@@ -7,7 +7,7 @@ VERSION='1.1.8'
 # Run all packages one by one untill they all are done.
 function all() {
   infod "Starting to install packages one by one: "
-  for i in packages/*; do 
+  for i in packages/*; do
     if test -f "${i%%/}/init.sh"; then
       bash "${i%%/}/init.sh"
     fi
@@ -16,7 +16,7 @@ function all() {
 
 
 function setup() {
-  # Make sure to ask the hard question 
+  # Make sure to ask the hard question
   while true; do
     read -p "🤌  Do you wish to installall dotfiles? [yn]: " yn
     case $yn in
@@ -86,9 +86,8 @@ else
 
   # First argument is --packages
   if [ "$1" == "--packages" ]; then
-
     infod "Available packages to run: "
-    for i in packages/*; do 
+    for i in packages/*; do
       if test -f "${i%%/}/init.sh"; then
         echo "  ${i%%/}"
         bash "${i%%/}/init.sh" --help
