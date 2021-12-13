@@ -23,7 +23,6 @@ nvimconfigdir="$HOME/.config/nvim"
 package="$PWD/$(dirname "$0")"
 
 function setup() {
-
   if ! commandExist $brewbin; then
     missing "brew is missing need to install it before that"
     exit;
@@ -99,7 +98,7 @@ if [ "$1" == "--version" ]; then
   exit;
 fi
 
-if [ "$1" == "--sync" ]; then 
+if [ "$1" == "--sync" ]; then
   sync
   exit;
 fi

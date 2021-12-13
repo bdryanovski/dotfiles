@@ -5,7 +5,7 @@ source ./helpers.sh
 VERSION="1.1.1"
 
 function banner() {
- echo "      _          _ _ " 
+ echo "      _          _ _ "
  echo "     | |        | | |"
  echo "  ___| |__   ___| | |"
  echo " / __| '_ \ / _ \ | |"
@@ -23,7 +23,6 @@ package="$PWD/$(dirname "$0")"
 brewbin="brew"
 
 function setup() {
-
   if ! [ $SHELL == '/bin/zsh' ]; then
     checked "Change the shell to ZSH"
     chsh -s $(which zsh)
@@ -36,7 +35,7 @@ function setup() {
 
   if fileExist "$HOME/.oh-my-zsh/oh-my-zsh.sh"; then
     checked "OH MyZSH is installed - skip this step"
-  else 
+  else
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     checked "Installing zsh plugin"
   fi
@@ -108,4 +107,3 @@ fi
 
 banner
 setup
-

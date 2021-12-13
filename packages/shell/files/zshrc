@@ -55,6 +55,12 @@ then
   git clone https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
 fi
 
+if [ ! -d "$ZSH_CUSTOM/plugins/zsh-you-should-use" ]
+then
+  echo "Installing Zsh You should use"
+  git clone https://github.com/MichaelAquilina/zsh-you-should-use.git $ZSH_CUSTOM/plugins/zsh-you-should-use
+fi
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -109,6 +115,11 @@ source "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 # Loading AutoSuggestions
 #
 source "$ZSH_CUSTOM/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
+#
+# Loading You Shoul Use plugin
+#
+source "$ZSH_CUSTOM/plugins/zsh-you-should-use/you-should-use.plugin.zsh"
 
 #
 # Aliases
