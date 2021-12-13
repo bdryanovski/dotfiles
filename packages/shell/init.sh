@@ -18,6 +18,7 @@ function banner() {
 
 shellConfig="$HOME/.zshrc"
 shellConfigBackup="$shellConfig.backup"
+zshCustom="$HOME/.zshrc_custom"
 package="$PWD/$(dirname "$0")"
 
 brewbin="brew"
@@ -42,17 +43,29 @@ function setup() {
 
   if fileExist $shellConfig; then
     checked "ZSH configuration already exist - need to backup $shellConfigBackup"
-    cp -f "$shellConfig" "$shellConfigBackum"
+    cp -f "$shellConfig" "$shellConfigBackup"
   fi
 
-  mkdir "$HOME/.zshrc_custom"
+  if directoryExist $zshCustom; then
+    checked "ZSH Custom directory exists - creating backup"
+
+    mv "$zshCustom" "$zshCustom.backup"
+    mkdir "$zshCustom"
+  else
+    checked "ZSH Custom directory don't exist - will create one"
+    mkdir "$zshCustom"
+  fi
+
 
   cp "$package/files/zshrc" "$shellConfig"
   checked "ZSH configuration is created $shellConfig"
 
-  checked "Creating some additional files"
-  cp "$package/files/alias.zsh" "$HOME/.zshrc_custom"
-  cp "$package/files/functions.zsh" "$HOME/.zshrc_custom"
+  cp "$package/files/alias.zsh" "$zshCustom"
+  cp "$package/files/functions.zsh" "$zshCustom"
+  checked "Creating alias.zsh and function.zsh"
+
+  cp "$package/files/logo.txt" "$zshCustom/logo.txt"
+  checked "Installing startup LOGO"
 
   checked "Install additional packages used in the above configurations"
   brew install exa
@@ -69,10 +82,13 @@ function sync() {
   cp -f "$shellConfig" "$package/files/zshrc"
 
   checked "Sync alias.zsh"
-  cp -f "$HOME/.zshrc_custom/alias.zsh" "$package/files/alias.zsh"
+  cp -f "$zshCustom/alias.zsh" "$package/files/alias.zsh"
 
   checked "Sync functions.zsh"
-  cp -f "$HOME/.zshrc_custom/functions.zsh" "$package/files/functions.zsh"
+  cp -f "$zshCustom/functions.zsh" "$package/files/functions.zsh"
+
+  checked "Sync LOGO"
+  cp -f "$zshCustom/logo.txt" "$package/files/logo.txt"
 
   packagedone "Shell is sync back to dotfiles - require review and commit."
 }

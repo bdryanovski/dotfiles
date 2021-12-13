@@ -21,6 +21,13 @@ function fileExist() {
   return 0 
 }
 
+function directoryExist() {
+  if ! test -d $1; then
+    return 1
+  fi
+  return 0
+}
+
 function isMacOS() {
   if [[ $OSTYPE == 'darwin'* ]]; then
     return 1
