@@ -69,8 +69,8 @@ function sync() {
 
   askQuestion "Are you sure that you want to continue?"
 
-  checked "Sync ~/.config/.nvim"
-  cp -f "$nvmconfigdir" "$package/files/"
+  checked "Sync $nvmconfigdir"
+  cp -Rf "$nvimconfigdir/" "$package/files/"
 
   packagedone "Shell is sync back to dotfiles - require review and commit."
 }
