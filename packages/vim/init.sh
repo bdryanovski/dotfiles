@@ -39,6 +39,9 @@ function setup() {
 
     checked "Installed NeoVim, Tree Sitter and Lua support"
 
+    brew install ripgrep 
+    checked "Installed ripgrep to assist NeoVim Telescope search"
+
     python3 -m pip install pynvim --user
 
     checked "Setup Python3 to work with NeoVim"
