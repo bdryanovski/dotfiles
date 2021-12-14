@@ -1,10 +1,12 @@
 if !exists('g:loaded_telescope') | finish | endif
 
-nnoremap <silent> <c-p> <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap <silent> ;r <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <silent> ;b <cmd>lua require('telescope.builtin').file_browser()<cr>
-nnoremap <silent> \\ <cmd>Telescope buffers<cr>
-nnoremap <silent> ;; <cmd>Telescope help_tags<cr>
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+nnoremap <leader>fs <cmd>Telescope grep_string<cr>
+nnoremap <leader>ft <cmd>Telescope file_browser<cr>
 
 lua << EOF
 function telescope_buffer_dir()
@@ -19,7 +21,7 @@ telescope.setup{
     layout_config = {
       vertical = { width = 0.5 }
     },
-    file_ignore_patterns = { "node_modules", "dist" },
+    file_ignore_patterns = { "node_modules" },
     mappings = {
       n = {
         ["q"] = actions.close
@@ -27,6 +29,7 @@ telescope.setup{
     },
   },
   pickers = {
+    find_files = { theme = "ivy" }, 
     -- find_files = { theme = "dropdown" },
   },
 }
