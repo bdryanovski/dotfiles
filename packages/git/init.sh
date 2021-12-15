@@ -62,9 +62,14 @@ function setup() {
   checked "Git global configuration set the name and email to $gitname <$gitemail>"
 
 
+  brew install --cask gpg-suite
+  checked "Installing GPG Suite"
+
   helptext " "
-  helptext "GPG need manual work so it could run"
+  helptext "If for some reason this fail fallow the steps below: "
+  helptext " "
   helptext "Visit this page: https://gpgtools.org"
+  helptext " "
   helptext "Install the package and get the SIGNKEY"
   helptext "Setup the signkey into the $gitconfig so we could automatically sign them"
   helptext " "
