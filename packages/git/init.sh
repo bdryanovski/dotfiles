@@ -2,7 +2,7 @@
 
 source ./helpers.sh
 
-VERSION="1.0.2"
+VERSION="1.0.3"
 
 function banner() {
   echo "   _____ _____ _______ "
@@ -88,10 +88,10 @@ function version() {
 function sync() {
   warn "Syncking files back to the dotfiles could break it"
 
-  askQuestion "Are you sure that you want to continue?" 
+  askQuestion "Are you sure that you want to continue?"
 
   checked "Sync .gitconfig"
-  cp -f "$gitconfig" "$package/files/gitconfig" 
+  cp -f "$gitconfig" "$package/files/gitconfig"
 
   packagedone "Git is sync back to dotfiles - require review and commit."
 }
