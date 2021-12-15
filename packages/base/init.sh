@@ -2,7 +2,7 @@
 
 source ./helpers.sh
 
-VERSION="1.0.0"
+VERSION="1.1.0"
 
 function banner() {
   echo "  ____                  "
@@ -11,7 +11,7 @@ function banner() {
   echo ' |  _ < / _` / __|/ _ \ '
   echo " | |_) | (_| \__ \  __/ "
   echo " |____/ \__,_|___/\___| "
-  echo "                        " 
+  echo "                        "
 }
 
 
@@ -39,7 +39,7 @@ function setup() {
 
   fi
 
-  
+
   if ! isMacOS; then
     xcode-select --install
     checked "Xcode basic packages are installed"
@@ -59,11 +59,11 @@ function setup() {
 
   helptext "Installing some packages to setup the machine"
 
-  brew install wget 
+  brew install wget
 
   checked "wget is installed"
 
-  if ! isMacOS; then 
+  if ! isMacOS; then
     helptext "Install MacOS applications with brew"
 
     apps=(

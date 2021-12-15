@@ -2,7 +2,7 @@
 
 source ./helpers.sh
 
-VERSION="1.0.0"
+VERSION="1.0.1"
 
 function banner() {
   echo "  _   _           _           _  _____ "

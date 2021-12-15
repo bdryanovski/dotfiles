@@ -3,7 +3,7 @@
 
 source ./helpers.sh
 
-VERSION="1.0.0"
+VERSION="1.0.2"
 
 function banner() {
   echo "   ____   _______   __ "
@@ -86,7 +86,7 @@ function setup() {
   infoblock "Disable press-and-hold for keys in favor of key repeat"
   defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
-  infoblock "Fast keyboard" 
+  infoblock "Fast keyboard"
   defaults write NSGlobalDomain KeyRepeat -int 0
 
   infoblock "Stop iTunes from responding to the keyboard media keys"
@@ -169,7 +169,7 @@ function setup() {
 
   infoblock "Dock: icon size set to 36"
   defaults write com.apple.dock tilesize -int 36
-  
+
   infoblock "Dock: Change minimize/maximize window effect"
   defaults write com.apple.dock mineffect -string "scale"
 
