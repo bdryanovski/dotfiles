@@ -82,6 +82,10 @@ function setup() {
 
   fi
 
+  brew tap homebrew/cask-fonts
+  brew install --cask font-sauce-code-pro-nerd-font
+  checked "Installing Fonts for Iterm and NeoVim later on"
+
   packagedone "Base is setup."
 }
 
