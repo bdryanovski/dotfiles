@@ -45,7 +45,7 @@ function setup() {
     checked "Xcode basic packages are installed"
   fi
 
-  if fileExist $basersa; then
+  if ! fileExist $basersa; then
     helptext "Every new machine require to have new SSH key"
 
     ssh-keygen -t rsa
@@ -70,6 +70,8 @@ function setup() {
       google-chrome
       iterm2
       spotify
+      bitwarden
+      notion
     )
 
     brew install --cask --appdir="/Applications" ${apps[@]}
