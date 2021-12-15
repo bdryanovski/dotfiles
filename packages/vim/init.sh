@@ -2,7 +2,7 @@
 
 source ./helpers.sh
 
-VERSION="1.0.2"
+VERSION="1.0.8"
 
 function banner() {
   echo " __      _______ __  __ "
@@ -39,7 +39,7 @@ function setup() {
 
     checked "Installed NeoVim, Tree Sitter and Lua support"
 
-    brew install ripgrep 
+    brew install ripgrep
     checked "Installed ripgrep to assist NeoVim Telescope search"
 
     python3 -m pip install pynvim --user
