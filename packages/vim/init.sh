@@ -2,7 +2,7 @@
 
 source ./helpers.sh
 
-VERSION="1.0.9"
+VERSION="1.1.0"
 
 function banner() {
   echo " __      _______ __  __ "
@@ -72,10 +72,24 @@ function sync() {
 
   askQuestion "Are you sure that you want to continue?"
 
-  checked "Sync $nvmconfigdir"
+  checked "Sync $nvimconfigdir"
   cp -Rf "$nvimconfigdir/" "$package/files/"
 
   packagedone "Shell is sync back to dotfiles - require review and commit."
+}
+
+function syncConfig() {
+  warn "Syncking only NeoVim configuration files back to dotfiles"
+
+  checked "Sync $nvimconfigdir"
+  cp -Rfv "$nvimconfigdir/" "$package/files/"
+}
+
+function installConfig() {
+  warn "Syncking NeoVim configration from dotfiles"
+
+  cp -Rv "$package/files/" "$nvimconfigdir"
+  checked "NeoVim confiration is synced"
 }
 
 function help() {
@@ -83,6 +97,10 @@ function help() {
   helptext "Description:"
   helptext "Setup NeoVim and Vim as editor"
   helptext "Configure the editors for development by installing additional packages"
+  helptext " "
+  helptext " Additional options:"
+  helptext "   --syncConfig     : copy NeoVim configration back to dotfiles (updating dotfiles)"
+  helptext "   --installConfig  : copy NeoVim configration from dotfiles (updating NeoVim)"
   helptext " "
 }
 
@@ -103,6 +121,16 @@ fi
 
 if [ "$1" == "--sync" ]; then
   sync
+  exit;
+fi
+
+if [ "$1" == "--syncConfig" ]; then
+  syncConfig
+  exit;
+fi
+
+if [ "$1" == "--installConfig" ]; then
+  installConfig
   exit;
 fi
 
