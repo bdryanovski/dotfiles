@@ -1,28 +1,26 @@
-# Path to your oh-my-zsh installation.
-export ZSH=/Users/bdryanovski/.oh-my-zsh
-
-plugins=(
-  git
-  colorize
-)
+#
+# Global Variables
+#
+export EDITOR=nvim
+export VISUAL=nvim
 
 # Would you like to use another custom folder than $ZSH/custom?
 export ZSH_CUSTOM=~/.zshrc_custom
 
 autoload -U promptinit && promptinit
+autoload -Uz compinit && compinit
 
 #
-# Make sure that theme is there and set it
+# THEME
 #
 if [ ! -d "$ZSH_CUSTOM/themes/spaceship-prompt/" ]
 then
   echo "Installing Spaceship theme ..."
   git clone https://github.com/spaceship-prompt/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
-  echo "Linking theme so ZSH will find it ..."
-  ln -sf "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme";
+  zsh "$ZSH_CUSTOM/themes/spaceship-prompt/scripts/install.sh"
 fi
 
-ZSH_THEME="spaceship"
+prompt spaceship
 
 SPACESHIP_PROMPT_ORDER=(
   user
@@ -39,9 +37,12 @@ SPACESHIP_CHAR_SYMBOL=🍺
 SPACESHIP_CHAR_SUFFIX=" "
 SPACESHIP_BATTERY_SHOW=true
 SPACESHIP_BATTERY_THRESHOLD=40
+#
+# PLUGINS
+#
 
 #
-# Adding command colors
+# Extend zsh with Syntax Colors
 #
 if [ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]
 then
@@ -49,77 +50,40 @@ then
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
 fi
 
+source "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+#
+# Loading AutoSuggestions
+#
 if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]
 then
   echo "Installing AutoSuggestions"
   git clone https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
 fi
 
+source "$ZSH_CUSTOM/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
+#
+# Loading You Shoul Use plugin
+#
 if [ ! -d "$ZSH_CUSTOM/plugins/zsh-you-should-use" ]
 then
   echo "Installing Zsh You should use"
   git clone https://github.com/MichaelAquilina/zsh-you-should-use.git $ZSH_CUSTOM/plugins/zsh-you-should-use
 fi
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-#
-# Start oh-my-zsh`
-#
-source $ZSH/oh-my-zsh.sh
-
-
-#
-# Display motd
-#
-# source "$ZSH_CUSTOM/motd.zsh"
-
-MOTD="$(cat "$ZSH_CUSTOM/logo.txt")"
-
-echo "$MOTD"
-
-#
-# Extend zsh with Syntax Colors
-#
-source "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-
-#
-# Loading AutoSuggestions
-#
-source "$ZSH_CUSTOM/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-
-#
-# Loading You Shoul Use plugin
-#
 source "$ZSH_CUSTOM/plugins/zsh-you-should-use/you-should-use.plugin.zsh"
+
+#
+# Loading additional plugins 
+#
+source "$ZSH_CUSTOM/plugins/git.plugin.zsh"
+
+#
+# Display Motivational Words For Today (MWFT)
+#
+MWFT="$(cat "$ZSH_CUSTOM/logo.txt")"
+echo "$MWFT"
 
 #
 # Aliases
@@ -161,10 +125,4 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
-#
-# Golang
-#
-export GOPATH=$HOME/golang
-export GOBIN=$GOPATH/bin
-export PATH=$PATH:$GOPATH
-export PATH=$PATH:$GOROOT/bin
+
