@@ -3,6 +3,7 @@
 c_green=$(tput setaf 2)
 c_yellow=$(tput setaf 3)
 c_red=$(tput setaf 1)
+c_magenta=$(tput setaf 5)
 c_reset=$(tput sgr0)
 c_dim=$(tput setaf 5)
 
@@ -41,6 +42,10 @@ function checked() {
 
 function missing() {
   echo -e "${c_red}❌ $1${c_reset}"
+}
+
+function info() {
+  echo -e "${c_magenta}ℹ️  $1${c_reset}"
 }
 
 function skip() {

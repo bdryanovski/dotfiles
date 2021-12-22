@@ -2,15 +2,15 @@
 
 source ./helpers.sh
 
-VERSION="1.2.0"
+VERSION="2.0.0"
 
 function banner() {
- echo "      _          _ _ "
- echo "     | |        | | |"
- echo "  ___| |__   ___| | |"
- echo " / __| '_ \ / _ \ | |"
- echo " \__ \ | | |  __/ | |"
- echo " |___/_| |_|\___|_|_|"
+ echo "      _          _ _  "
+ echo "     | |        | | | "
+ echo "  ___| |__   ___| | | "
+ echo " / __| '_ \ / _ \ | | "
+ echo " \__ \ | | |  __/ | | "
+ echo " |___/_| |_|\___|_|_| "
  echo "  "
  echo " -- Configure working shell (zsh) "
  echo "  "
@@ -21,54 +21,45 @@ shellConfigBackup="$shellConfig.backup"
 zshCustom="$HOME/.zshrc_custom"
 package="$PWD/$(dirname "$0")"
 
-brewbin="brew"
-
 function setup() {
   if ! [ $SHELL == '/bin/zsh' ]; then
-    checked "Change the shell to ZSH"
     chsh -s $(which zsh)
-  fi
-
-  if ! commandExist $brewbin; then
-    bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    checked "Brew is installed"
-  fi
-
-  if fileExist "$HOME/.oh-my-zsh/oh-my-zsh.sh"; then
-    checked "OH MyZSH is installed - skip this step"
-  else
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    checked "Installing zsh plugin"
+    checked "Change the shell to ZSH"
   fi
 
   if fileExist $shellConfig; then
-    checked "ZSH configuration already exist - need to backup $shellConfigBackup"
-    cp -f "$shellConfig" "$shellConfigBackup"
+    warn "ZSH configuration already exist - need to backup $shellConfigBackup"
+    cp -vf "$shellConfig" "$shellConfigBackup"
   fi
 
   if directoryExist $zshCustom; then
-    checked "ZSH Custom directory exists - creating backup"
-
+    warn "ZSH Custom directory exists - creating backup"
     mv "$zshCustom" "$zshCustom.backup"
     mkdir "$zshCustom"
   else
-    checked "ZSH Custom directory don't exist - will create one"
+    info "ZSH Custom directory don't exist - will create one"
     mkdir "$zshCustom"
+    mkdir "$zshCustom/themes"
+    mkdir "$zshCustom/plugins"
+    checked "ZSH Custom directory is ready"
   fi
 
 
   cp "$package/files/zshrc" "$shellConfig"
   checked "ZSH configuration is created $shellConfig"
 
-  cp "$package/files/alias.zsh" "$zshCustom"
-  cp "$package/files/functions.zsh" "$zshCustom"
-  checked "Creating alias.zsh and function.zsh"
+  info "Copying additional files"
+  cp -v "$package/files/alias.zsh" "$zshCustom"
+  cp -v "$package/files/functions.zsh" "$zshCustom"
+  cp -v "$pacakge/files/plugins/" "$zshCustom/plugins"
 
   cp "$package/files/logo.txt" "$zshCustom/logo.txt"
-  checked "Installing startup LOGO"
+  checked "Motivation Words For Today are installed"
 
-  checked "Install additional packages used in the above configurations"
+  info "Install additional packages used in the above configurations"
   brew install exa
+
+  checked "Packages are installed"
 
   packagedone "Shell is configure and ready to use."
 }
@@ -78,17 +69,20 @@ function sync() {
 
   askQuestion "Are you sure that you want to continue?"
 
-  checked "Sync .zshrc"
-  cp -f "$shellConfig" "$package/files/zshrc"
+  cp -vf "$shellConfig" "$package/files/zshrc"
+  checked "Synced .zshrc"
 
-  checked "Sync alias.zsh"
-  cp -f "$zshCustom/alias.zsh" "$package/files/alias.zsh"
+  cp -vf "$zshCustom/alias.zsh" "$package/files/alias.zsh"
+  checked "Synced alias.zsh"
 
-  checked "Sync functions.zsh"
-  cp -f "$zshCustom/functions.zsh" "$package/files/functions.zsh"
+  cp -vf "$zshCustom/functions.zsh" "$package/files/functions.zsh"
+  checked "Synced functions.zsh"
 
-  checked "Sync LOGO"
-  cp -f "$zshCustom/logo.txt" "$package/files/logo.txt"
+  cp -vf "$zshCustom/logo.txt" "$package/files/logo.txt"
+  checked "Synced LOGO"
+
+  cp -vf $zshCustom/plugins/*.plugin.zsh "$package/files/plugins/"
+  checked "Synced custom plugins"
 
   packagedone "Shell is sync back to dotfiles - require review and commit."
 }
