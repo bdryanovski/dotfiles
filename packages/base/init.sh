@@ -63,6 +63,10 @@ function setup() {
 
   checked "wget is installed"
 
+  brew install navi
+
+  checked "navi is installed"
+
   if ! isMacOS; then
     helptext "Install MacOS applications with brew"
 
