@@ -97,7 +97,6 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 call plug#begin(data_dir . '/plugins')
-
  source ~/.config/nvim/config/theme.vim
  source ~/.config/nvim/config/file_browser.vim
  source ~/.config/nvim/config/lsp.vim
