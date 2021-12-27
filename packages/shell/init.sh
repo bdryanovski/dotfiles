@@ -38,20 +38,20 @@ function setup() {
     mkdir "$zshCustom"
   else
     info "ZSH Custom directory don't exist - will create one"
-    mkdir "$zshCustom"
-    mkdir "$zshCustom/themes"
-    mkdir "$zshCustom/plugins"
+    mkdir $zshCustom
+    mkdir $zshCustom/themes
+    mkdir $zshCustom/plugins
     checked "ZSH Custom directory is ready"
   fi
 
 
-  cp "$package/files/zshrc" "$shellConfig"
+  cp $package/files/zshrc $shellConfig
   checked "ZSH configuration is created $shellConfig"
 
   info "Copying additional files"
-  cp -v "$package/files/alias.zsh" "$zshCustom"
-  cp -v "$package/files/functions.zsh" "$zshCustom"
-  cp -v "$pacakge/files/plugins/" "$zshCustom/plugins"
+  cp -v $package/files/alias.zsh $zshCustom
+  cp -v $package/files/functions.zsh $zshCustom
+  cp -v $package/files/plugins/* $zshCustom/plugins
 
   cp "$package/files/logo.txt" "$zshCustom/logo.txt"
   checked "Motivation Words For Today are installed"
@@ -99,6 +99,16 @@ function version() {
   helptext "Package version: $VERSION"
 }
 
+function uninstall() {
+  warn "Uninstalling is not reversable action, there is no comming back!"
+
+  askQuestion "Are you sure that you want to continue ?: "
+
+  rm -rvf $shellConfig $shellConfigBackup $zshCustom $zshCustom.backup
+
+  packagedone "Uninstall shell package is done."
+}
+
 
 if [ "$1" == "--help" ]; then
   help
@@ -112,6 +122,11 @@ fi
 
 if [ "$1" == "--sync" ]; then
   sync
+  exit;
+fi
+
+if [ "$1" == "--uninstall" ]; then
+  uninstall
   exit;
 fi
 
