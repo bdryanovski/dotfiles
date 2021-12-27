@@ -16,7 +16,7 @@ function banner() {
 
 
 brewbin="brew"
-basersa="~/.ssh/id_rsa"
+basersa=$HOME/.ssh/id_rsa
 
 function setup() {
   if ! commandExist $brewbin; then
