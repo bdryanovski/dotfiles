@@ -42,7 +42,7 @@ function checked() {
   echo -e "${c_green}✅ $1${c_reset}"
 }
 
-function missing() {
+function error() {
   echo -e "${c_red}❌ $1${c_reset}"
 }
 
@@ -65,17 +65,11 @@ function askQuestion {
     read -p "${msg} (hit 'y/Y' to continue, 'n/N' to cancel) " -n 1 ynanswer
     case ${ynanswer} in
       [Yy] ) waitingforanswer=false; break;;
-      [Nn] ) echo ""; missing "Operation cancelled as requested!"; exit;;
+      [Nn] ) echo ""; error "Operation cancelled as requested!"; exit;;
       *    ) echo ""; echo "Please answer either yes (y/Y) or no (n/N).";;
     esac
   done
   echo ""
-}
-
-function infod() {
-  echo "   "
-  echo "  🤌  $1"
-  echo "  "
 }
 
 function packagedone() {
