@@ -90,6 +90,8 @@ function setup() {
   brew install --cask font-sauce-code-pro-nerd-font
   checked "Installing Fonts for Iterm and NeoVim later on"
 
+  updateVersion 'base' $VERSION  
+
   packagedone "Base is setup."
 }
 
@@ -101,7 +103,7 @@ function help() {
 }
 
 function version() {
-  helptext "Package version: $VERSION"
+  echo $VERSION
 }
 
 if [ "$1" == "--help" ]; then

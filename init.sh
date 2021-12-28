@@ -2,7 +2,7 @@
 
 source ./helpers.sh
 
-VERSION='1.4.0'
+VERSION=2.0.0
 
 # Run all packages one by one untill they all are done.
 function all() {
@@ -29,7 +29,42 @@ function setup() {
 
 
 function version() {
-  helptext "Package version: $VERSION"
+
+  source $DVCFG
+
+  info "Information about installed packaged and the current version on this system. Packages marked with red are out of sync, and the one in green are ok"
+
+  echo "  "
+
+  info "Dotfile version: $VERSION"
+
+  echo "  "
+
+  printf "%10s %10s %10s\n" "Package" "Current" "Dotfile"
+  printf "%10s %10s %10s\n" "-------" "-------" "-------"
+
+  for i in packages/*; do
+    if test -f "${i%/}/init.sh"; then
+      packageName=$(basename $i)
+      packageVersion="$(bash "${i%/}/init.sh" --version)" 
+      packageCurrentVersion="${!packageName}"
+      
+      if [[ $packageVersion == $packageCurrentVersion ]]; then 
+        printf "${c_green}%10s %10s %10s${c_reset}" $packageName $packageCurrentVersion $packageVersion
+      else
+        printf "${c_red}%10s %10s %10s${c_reset}" $packageName $packageCurrentVersion $packageVersion
+      fi
+      echo " "
+    fi
+  done
+  exit
+}
+
+function syncVersionDotfile() {
+  info "Syncing packages one by one to local dotfile version storage"
+  syncVersions
+  packagedone "All packages are in sync - check it by passing --version argument"
+  exit
 }
 
 function banner() {
@@ -84,13 +119,18 @@ else
     exit
   fi
 
+  if [ "$1" == "--sync-version-dotfile" ]; then
+    syncVersionDotfile
+    exit
+  fi
+
   # First argument is --packages
   if [ "$1" == "--packages" ]; then
     infod "Available packages to run: "
     for i in packages/*; do
-      if test -f "${i%%/}/init.sh"; then
-        echo "  ${i%%/}"
-        bash "${i%%/}/init.sh" --help
+      if test -f "${i%/}/init.sh"; then
+        echo "  ${i%/}"
+        bash "${i%/}/init.sh" --help
       fi
     done
 
