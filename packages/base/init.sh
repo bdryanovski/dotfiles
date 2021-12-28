@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./helpers.sh
+source ./interface.sh
 
 VERSION="1.1.0"
 
@@ -99,6 +99,9 @@ function help() {
   helptext " "
   helptext "Description:"
   helptext "Basic system setup require for later packages to pass without depending on each other"
+  helptext " "
+  helptext " --help    - provide this information"
+  helptext " --version - package version"
   helptext " "
 }
 

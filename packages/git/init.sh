@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./helpers.sh
+source ./interface.sh
 
 VERSION="1.0.3"
 
@@ -85,6 +85,10 @@ function help() {
   helptext "Configure control version tooling"
   helptext "This include git configuration, additional commands"
   helptext "Also instructions how to setup GPG Signing"
+  helptext " "
+  helptext " --help    - provide this information"
+  helptext " --version - package version"
+  helptext " --sync    - copy files back to Dotfile"
   helptext " "
 }
 
