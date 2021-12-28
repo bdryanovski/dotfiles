@@ -1,4 +1,6 @@
 
+source ./configuration.sh
+
 # Colors
 c_green=$(tput setaf 2)
 c_yellow=$(tput setaf 3)
@@ -82,4 +84,56 @@ function packagedone() {
 
 function helptext() {
   echo "${c_dim}    $1${c_reset}"
+}
+
+# 1 - package
+# 2 - version
+function updateVersion() {
+
+  makeSureDotfileVersionFileExist
+
+  source $DVCFG
+
+  clearVersion
+
+  #
+  # TODO This code below could be refactor
+  #
+  for i in packages/*; do
+    if test -f "${i%/}/init.sh"; then
+      packageName=$(basename $i)
+      if [[ $packageName == $1 ]]; then
+        writeVersion $1 $2
+      else
+        packageCurrentVersion="${!packageName}"
+        writeVersion $packageName $packageCurrentVersion 
+      fi
+    fi
+  done
+}
+
+function clearVersion() {
+  rm -rf $DVCFG
+}
+
+function writeVersion() {
+  makeSureDotfileVersionFileExist
+  echo "$1=$2" >> $DVCFG
+}
+
+function syncVersions() {
+  clearVersion
+  for i in packages/*; do
+    if test -f "${i%/}/init.sh"; then
+      packageName=$(basename $i)
+      packageDotfileVersion="$(bash "${i%/}/init.sh" --version)"
+      writeVersion $packageName $packageDotfileVersion
+    fi
+  done
+}
+
+function makeSureDotfileVersionFileExist() {
+  if ! fileExist $DVCFG; then
+    touch $DVCFG
+  fi
 }

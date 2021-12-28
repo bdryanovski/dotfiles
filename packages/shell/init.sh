@@ -61,6 +61,8 @@ function setup() {
 
   checked "Packages are installed"
 
+  updateVersion $DVCFG 'shell' $VERSION
+
   packagedone "Shell is configure and ready to use."
 }
 
@@ -84,6 +86,8 @@ function sync() {
   cp -vf $zshCustom/plugins/*.plugin.zsh "$package/files/plugins/"
   checked "Synced custom plugins"
 
+  updateVersion 'shell' $VERSION
+
   packagedone "Shell is sync back to dotfiles - require review and commit."
 }
 
@@ -96,7 +100,7 @@ function help() {
 }
 
 function version() {
-  helptext "Package version: $VERSION"
+  echo $VERSION
 }
 
 function uninstall() {

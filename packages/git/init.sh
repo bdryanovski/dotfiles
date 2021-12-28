@@ -74,6 +74,8 @@ function setup() {
   helptext "Setup the signkey into the $gitconfig so we could automatically sign them"
   helptext " "
 
+  updateVersion 'git' $VERSION  
+
   packagedone "Git is ready to be used"
 }
 
@@ -87,7 +89,7 @@ function help() {
 }
 
 function version() {
-  helptext "Package version: $VERSION"
+  echo $VERSION
 }
 
 function sync() {
