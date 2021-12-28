@@ -44,9 +44,6 @@ The above command will run only the `shell` package and nothing more.
 
 Helpers is a collections of useful functions that are used across packages - this way a single change could be apply to multiple files, keep everything the same, and simplify a lot of clunky BASH functionality.
 
-
-
-
 ### Packages
 
 Packages are located inside `packages` folder. Everyone must include `init.sh` script, everything inside it is optional.
@@ -97,3 +94,11 @@ The basic structure is that every package support few things as commands:
     Configure the editors for development by installing additional packages
 
 ```
+
+### Versioning
+
+There are a lot of internl version here - so some explanation will be needed. The main version, also known as `Dotfile version` is the version of the Dotfile itself and cover UI, Helpers and everything releated to the install, sync and update tooling.
+
+Every package have it's own version, this way I could track what version I'm running on my machine and do I need to update or not? Few of the packages could have a bigger version than other - just because they don't update that often, for example `base` package may not require a lot of changes over time like for example `vim` package that sync NeoVim across different machines and it's always under changes.
+
+Running `--status` will return list of packages - the version it's installed and the version that the Dotfile have, marked with red are packages that are out of sync. This way after `git pull` I could compare what changed over time and do I want to update it.
