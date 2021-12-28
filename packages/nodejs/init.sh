@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./helpers.sh
+source ./interface.sh
 
 VERSION="1.0.1"
 
@@ -45,6 +45,8 @@ function help() {
   helptext " "
   helptext "Setup NodeJS for development"
   helptext "  "
+  helptext " --help    - provide this information"
+  helptext " --version - package version"
 }
 
 function version() {
