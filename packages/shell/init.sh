@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./helpers.sh
+source ./interface.sh
 
 VERSION="2.0.0"
 
@@ -96,6 +96,11 @@ function help() {
   helptext "Description:"
   helptext "Setup ZSH and install Homebrew."
   helptext "This include command line aliases, theme, automation and more"
+  helptext " "
+  helptext " --help      - provide this information"
+  helptext " --version   - package version"
+  helptext " --uninstall - remove all installed files"
+  helptext " --sync      - copy files back to Dotfile"
   helptext " "
 }
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-source ./helpers.sh
+source ./interface.sh
 
 VERSION="1.0.2"
 
@@ -261,6 +261,9 @@ function help() {
   helptext "Description:"
   helptext "This package will configure MacOS by setting and modify system settings"
   helptext "From system settings, env, and more"
+  helptext " "
+  helptext " --help    - provide this information"
+  helptext " --version - package version"
   helptext " "
 }
 
