@@ -154,8 +154,7 @@ if [ "$1" == "--syncConfig" ]; then
 fi
 
 if [ "$1" == "--installConfig" ]; then
-  # installConfig
-  updateVersion 'vim' 4.0.0
+  installConfig
   exit;
 fi
 
