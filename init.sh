@@ -7,7 +7,7 @@ VERSION=2.0.0
 function setup() {
   askQuestion "🧐 Do you wish to install all dotfiles?"
 
-  infod "Starting to install packages one by one: "
+  info "Starting to install packages one by one: "
   for i in packages/*; do
     if test -f "${i%%/}/init.sh"; then
       bash "${i%%/}/init.sh"
@@ -124,7 +124,7 @@ else
 
   # First argument is --packages
   if [ "$1" == "--packages" ]; then
-    infod "Available packages to run: "
+    info "Available packages to run: "
     for i in packages/*; do
       if test -f "${i%/}/init.sh"; then
         echo "  ${i%/}"

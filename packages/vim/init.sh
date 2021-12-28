@@ -38,7 +38,7 @@ package="$PWD/$(dirname "$0")"
 
 function setup() {
   if ! commandExist $brewbin; then
-    missing "brew is missing need to install it before that"
+    error "brew is missing need to install it before that"
     exit;
   fi
 
@@ -64,7 +64,7 @@ function setup() {
   if commandExist $vimbin; then
     checked "Vim is installed"
   else
-    missing "Vim is not installed but I prefer nvim so this is on you/me"
+    error "Vim is not installed but I prefer nvim so this is on you/me"
   fi
 
   if fileExist "$nvimconfigdir/init.vim"; then
