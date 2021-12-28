@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./helpers.sh
+source ./interface.sh
 
 VERSION="1.1.0"
 
@@ -77,8 +77,6 @@ function sync() {
   checked "Sync $nvimconfigdir"
   cp -Rf "$nvimconfigdir/" "$package/files/"
 
-  updateVersion 'vim' $VERSION  
-
   packagedone "Shell is sync back to dotfiles - require review and commit."
 }
 
@@ -104,6 +102,10 @@ function help() {
   helptext "Description:"
   helptext "Setup NeoVim and Vim as editor"
   helptext "Configure the editors for development by installing additional packages"
+  helptext " "
+  helptext " --help    - provide this information"
+  helptext " --version - package version"
+  helptext " --sync    - copy files back to Dotfile"
   helptext " "
   helptext " Additional options:"
   helptext "   --syncConfig     : copy NeoVim configration back to dotfiles (updating dotfiles)"

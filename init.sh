@@ -1,11 +1,12 @@
 #!/bin/bash
 
-source ./helpers.sh
+source ./interface.sh
 
 VERSION=2.0.0
 
-# Run all packages one by one untill they all are done.
-function all() {
+function setup() {
+  askQuestion "🧐 Do you wish to install all dotfiles?"
+
   infod "Starting to install packages one by one: "
   for i in packages/*; do
     if test -f "${i%%/}/init.sh"; then
@@ -14,21 +15,11 @@ function all() {
   done
 }
 
-
-function setup() {
-  # Make sure to ask the hard question
-  while true; do
-    read -p "🤌  Do you wish to installall dotfiles? [yn]: " yn
-    case $yn in
-      [Yy]* ) all; exit; break;;
-      [Nn]* ) exit;;
-      * ) echo "Please answer yes or no.";;
-    esac
-  done
+function version() {
+  echo $VERSION
 }
 
-
-function version() {
+function status() {
 
   source $DVCFG
 
@@ -94,10 +85,12 @@ else
     helptext "Install, setup and sync dotfiles - grouped by packages"
     helptext " "
     helptext "Arguments: "
-    helptext "  --help      - this documentation"
-    helptext "  --version   - dotfiles version"
-    helptext "  --packages  - list of all available packages"
-    helptext "  --sync      - copy configrations back to dotfiles (require git push to share)"
+    helptext "  --help                  - this documentation"
+    helptext "  --version               - dotfiles version"
+    helptext "  --status                - get information about packages and versions"
+    helptext "  --sync-version-dotfile  - sync package version to this machine without installing them (Use in specific cases, like update from v1 to v2)"
+    helptext "  --packages              - list of all available packages"
+    helptext "  --sync                  - copy configrations back to dotfiles (require git push to share)"
     helptext "  "
     helptext "! Running it without any argument or package name will ask you to install everything."
     helptext " "
@@ -116,6 +109,11 @@ else
 
   if [ "$1" == "--version" ]; then
     version
+    exit
+  fi
+
+  if [ "$1" == "--status" ]; then
+    status
     exit
   fi
 
