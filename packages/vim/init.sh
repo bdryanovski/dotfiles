@@ -64,6 +64,8 @@ function setup() {
   checked "Installing TypeScript and some additional packages required for type complition"
   npm install -g typescript typescript-language-server diagnostic-languageserver
 
+  updateVersion 'vim' $VERSION  
+
   packagedone "Editors are ready to be used."
 }
 
@@ -74,6 +76,8 @@ function sync() {
 
   checked "Sync $nvimconfigdir"
   cp -Rf "$nvimconfigdir/" "$package/files/"
+
+  updateVersion 'vim' $VERSION  
 
   packagedone "Shell is sync back to dotfiles - require review and commit."
 }
@@ -89,6 +93,9 @@ function installConfig() {
   warn "Syncking NeoVim configration from dotfiles"
 
   cp -Rv "$package/files/" "$nvimconfigdir"
+
+  updateVersion 'vim' $VERSION  
+
   checked "NeoVim confiration is synced"
 }
 
@@ -105,7 +112,7 @@ function help() {
 }
 
 function version() {
-  helptext "Package version: $VERSION"
+  echo $VERSION
 }
 
 
@@ -130,7 +137,8 @@ if [ "$1" == "--syncConfig" ]; then
 fi
 
 if [ "$1" == "--installConfig" ]; then
-  installConfig
+  # installConfig
+  updateVersion 'vim' 4.0.0
   exit;
 fi
 

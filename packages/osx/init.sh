@@ -250,6 +250,8 @@ function setup() {
 
   echo "  "
 
+  updateVersion 'osx' $VERSION  
+
   packagedone "MacOS is setup and ready"
 }
 
@@ -263,7 +265,7 @@ function help() {
 }
 
 function version() {
-  helptext "Package version: $VERSION"
+  echo $VERSION
 }
 
 

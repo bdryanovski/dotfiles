@@ -36,6 +36,8 @@ function setup() {
     checked "Installing Node version: $nodeVersion and making it default."
   fi
 
+  updateVersion 'nodejs' $VERSION  
+
   packagedone "NodeJS is ready to be use."
 }
 
@@ -46,7 +48,7 @@ function help() {
 }
 
 function version() {
-  helptext "Package version: $VERSION"
+  echo $VERSION
 }
 
 if [ "$1" == "--help" ]; then
