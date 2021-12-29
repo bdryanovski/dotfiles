@@ -267,6 +267,7 @@ function help() {
   helptext "From system settings, env, and more"
   helptext " "
   helptext " --help    - provide this information"
+  helptext " --install - install package"
   helptext " --version - package version"
   helptext " "
 }
@@ -282,18 +283,20 @@ function infoblock() {
 
 
 if ! isMacOS; then
-  if [ "$1" == "--help" ]; then
-    banner
-    help
-    exit;
-  fi
 
   if [ "$1" == "--version" ]; then
     version
     exit;
   fi
 
+  if [ "$1" == "--install" ]; then
+    banner
+    setup
+    exit
+  fi
+
   banner
-  setup
+  help
+  exit
 fi
 

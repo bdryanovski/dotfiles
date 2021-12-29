@@ -39,7 +39,6 @@ function setup() {
 
   fi
 
-
   if ! isMacOS; then
     xcode-select --install
     checked "Xcode basic packages are installed"
@@ -101,6 +100,7 @@ function help() {
   helptext "Basic system setup require for later packages to pass without depending on each other"
   helptext " "
   helptext " --help    - provide this information"
+  helptext " --install - install package"
   helptext " --version - package version"
   helptext " "
 }
@@ -109,16 +109,17 @@ function version() {
   echo $VERSION
 }
 
-if [ "$1" == "--help" ]; then
-  help
-  exit;
-fi
-
 if [ "$1" == "--version" ]; then
   version
   exit;
 fi
 
+if [ "$1" == "--install" ]; then
+  setup
+  exit
+fi
+
 banner
-setup
+help
+exit
 
