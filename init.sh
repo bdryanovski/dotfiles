@@ -2,7 +2,7 @@
 
 source ./interface.sh
 
-VERSION=2.0.0
+VERSION=2.1.0
 
 function setup() {
   askQuestion "🧐 Do you wish to install all dotfiles?"
@@ -10,7 +10,7 @@ function setup() {
   info "Starting to install packages one by one: "
   for i in packages/*; do
     if test -f "${i%%/}/init.sh"; then
-      bash "${i%%/}/init.sh"
+      bash "${i%%/}/init.sh" --install
     fi
   done
 }
@@ -100,6 +100,9 @@ else
     helptext "  "
     helptext "All of the packages support additional arguments to provide information for themself"
     helptext "  --help     - package description and help information"
+    helptext "  --install  - initial install of the package"
+    helptext "  --update   - update package with newer version"
+    helptext "  --sync     - sync package with the dotfile [optional]"
     helptext "  --version  - package version"
     helptext "  "
     helptext "Any additional arguments will be found in the --help for the specific package"

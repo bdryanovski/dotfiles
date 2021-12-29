@@ -1,4 +1,3 @@
-
 source ./configuration.sh
 
 # Colors
