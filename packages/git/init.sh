@@ -54,10 +54,7 @@ function setup() {
     cp -f "$gitconfig" "$gitconfigbackup"
   fi
 
-
-  cp "$package/files/gitconfig" "$gitconfig"
-  checked "git configuration file created: $gitconfig"
-
+  update
 
   if ! commandExist $npmbin; then
     missing "Node & NPM are not installed, yet"
@@ -88,8 +85,6 @@ function setup() {
   helptext "Setup the signkey into the $gitconfig so we could automatically sign them"
   helptext " "
 
-  updateVersion 'git' $VERSION  
-
   packagedone "Git is ready to be used"
 }
 
@@ -101,6 +96,8 @@ function help() {
   helptext "Also instructions how to setup GPG Signing"
   helptext " "
   helptext " --help    - provide this information"
+  helptext " --install - install package"
+  helptext " --update  - update package"
   helptext " --version - package version"
   helptext " --sync    - copy files back to Dotfile"
   helptext " "
@@ -121,12 +118,12 @@ function sync() {
   packagedone "Git is sync back to dotfiles - require review and commit."
 }
 
+function update() {
+  cp "$package/files/gitconfig" "$gitconfig"
+  checked "updating ~/.gitconfig"
 
-if [ "$1" == "--help" ]; then
-  banner
-  help
-  exit;
-fi
+  updateVersion 'git' $VERSION  
+}
 
 if [ "$1" == "--version" ]; then
   version
@@ -138,7 +135,17 @@ if [ "$1" == "--sync" ]; then
   exit;
 fi
 
+if [ "$1" == "--update" ]; then
+  update 
+  exit
+fi
+
+if [ "$1" == "--install" ]; then
+  banner
+  setup
+  exit
+fi
 
 banner
-setup
-
+help
+exit

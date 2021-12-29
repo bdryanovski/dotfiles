@@ -44,7 +44,7 @@ function setup() {
     checked "Installing Node version: $nodeVersion and making it default."
   fi
 
-  updateVersion 'nodejs' $VERSION  
+  update
 
   packagedone "NodeJS is ready to be use."
 }
@@ -54,23 +54,37 @@ function help() {
   helptext "Setup NodeJS for development"
   helptext "  "
   helptext " --help    - provide this information"
+  helptext " --install - install package"
+  helptext " --update  - update package"
   helptext " --version - package version"
+  helptext "  "
 }
 
 function version() {
   echo $VERSION
 }
 
-if [ "$1" == "--help" ]; then
-  banner
-  help
-  exit;
-fi
+function update() {
+  updateVersion 'nodejs' $VERSION  
+}
 
 if [ "$1" == "--version" ]; then
   version
   exit;
 fi
 
+if [ "$1" == "--update" ]; then
+  update 
+  exit;
+fi
+
+
+if [ "$1" == "--install" ]; then
+  banner
+  setup
+  exit;
+fi
+
 banner
-setup
+help
+exit

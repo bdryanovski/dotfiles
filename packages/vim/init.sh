@@ -6,15 +6,15 @@ VERSION="1.1.0"
 
 function banner() {
   echo "  "
-  echo "                              ,φε           ▄ "
-  echo "                            ,@╬╬╠▒          ▓▓▌ "
-  echo "                          ╓╣╬╬╬╬╠╠╬ε        ▓▓▓▓▓ç "
-  echo "                         ▐╬╬╣╣╬╬╬╬╬╬▒       ▓▓▓▓▓▓▌ "
-  echo "                         ╚╬╬╬╠╣╣╬╬╬╬╬▓      ▓▓▓▓▓▓▌ "
-  echo "                         ║╠╠╠╠╬╣╣╬╬╬╬╬╬▒    ▓▓▓▓▓▓▌ "
-  echo "                         ║╠╠╠╬╬╬ ╟╬╬╬╬╬╬▓   ▓▓▓▓▓▓▌ "
-  echo "                         ║╬╬╬╬╬╠  ╙╬╬╬╬╬╬▓▄ ▓▓▓▓▓▓▌ "
-  echo "                         ║╬╬╬╬╬╬    ╣╬╬╬╬╬╬▌▓█████▌        "
+  echo "                              ,φε           ▄                                   "
+  echo "                            ,@╬╬╠▒          ▓▓▌                                 "
+  echo "                          ╓╣╬╬╬╬╠╠╬ε        ▓▓▓▓▓ç                              "
+  echo "                         ▐╬╬╣╣╬╬╬╬╬╬▒       ▓▓▓▓▓▓▌                             "
+  echo "                         ╚╬╬╬╠╣╣╬╬╬╬╬▓      ▓▓▓▓▓▓▌                             "
+  echo "                         ║╠╠╠╠╬╣╣╬╬╬╬╬╬▒    ▓▓▓▓▓▓▌                             "
+  echo "                         ║╠╠╠╬╬╬ ╟╬╬╬╬╬╬▓   ▓▓▓▓▓▓▌                             "
+  echo "                         ║╬╬╬╬╬╠  ╙╬╬╬╬╬╬▓▄ ▓▓▓▓▓▓▌                             "
+  echo "                         ║╬╬╬╬╬╬    ╣╬╬╬╬╬╬▌▓█████▌                             "
   echo "                         ║╬╬╬╬╬╣     ╙╬╬╬╬╬╬▓▓████▌                             "
   echo "                         ║╬╬╬╬╬╣      └╣╣╣╬╬▓▓▓███▌                             "
   echo "                          ╚╬╬╬╬╣        ╚▓▓▓▓▓▓█▀└                              "
@@ -67,6 +67,15 @@ function setup() {
     error "Vim is not installed but I prefer nvim so this is on you/me"
   fi
 
+  checked "Installing TypeScript and some additional packages required for type complition"
+  npm install -g typescript typescript-language-server diagnostic-languageserver
+
+  update
+
+  packagedone "Editors are ready to be used."
+}
+
+function update() {
   if fileExist "$nvimconfigdir/init.vim"; then
     checked "NeoVim is already setup - backuping it before continue"
     cp -R "$nvimconfigdir" "$nvimconfigdir.backup"
@@ -75,12 +84,7 @@ function setup() {
   checked "Setuping NeoVim configuration"
   cp -R "$package/files/" "$nvimconfigdir"
 
-  checked "Installing TypeScript and some additional packages required for type complition"
-  npm install -g typescript typescript-language-server diagnostic-languageserver
-
   updateVersion 'vim' $VERSION  
-
-  packagedone "Editors are ready to be used."
 }
 
 function sync() {
@@ -94,23 +98,6 @@ function sync() {
   packagedone "Shell is sync back to dotfiles - require review and commit."
 }
 
-function syncConfig() {
-  warn "Syncking only NeoVim configuration files back to dotfiles"
-
-  checked "Sync $nvimconfigdir"
-  cp -Rfv "$nvimconfigdir/" "$package/files/"
-}
-
-function installConfig() {
-  warn "Syncking NeoVim configration from dotfiles"
-
-  cp -Rv "$package/files/" "$nvimconfigdir"
-
-  updateVersion 'vim' $VERSION  
-
-  checked "NeoVim confiration is synced"
-}
-
 function help() {
   helptext " "
   helptext "Description:"
@@ -118,25 +105,16 @@ function help() {
   helptext "Configure the editors for development by installing additional packages"
   helptext " "
   helptext " --help    - provide this information"
+  helptext " --install - install package"
+  helptext " --update  - update package"
   helptext " --version - package version"
   helptext " --sync    - copy files back to Dotfile"
-  helptext " "
-  helptext " Additional options:"
-  helptext "   --syncConfig     : copy NeoVim configration back to dotfiles (updating dotfiles)"
-  helptext "   --installConfig  : copy NeoVim configration from dotfiles (updating NeoVim)"
   helptext " "
 }
 
 function version() {
   echo $VERSION
 }
-
-
-if [ "$1" == "--help" ]; then
-  banner
-  help
-  exit;
-fi
 
 if [ "$1" == "--version" ]; then
   version
@@ -148,15 +126,17 @@ if [ "$1" == "--sync" ]; then
   exit;
 fi
 
-if [ "$1" == "--syncConfig" ]; then
-  syncConfig
-  exit;
+if [ "$1" == "--update" ]; then
+  update;
+  exit
 fi
 
-if [ "$1" == "--installConfig" ]; then
-  installConfig
-  exit;
+if [ "$1" == "--install" ]; then
+  banner
+  setup
+  exit
 fi
 
 banner
-setup
+help
+exit

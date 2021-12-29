@@ -30,41 +30,12 @@ function setup() {
     checked "Change the shell to ZSH"
   fi
 
-  if fileExist $shellConfig; then
-    warn "ZSH configuration already exist - need to backup $shellConfigBackup"
-    cp -vf "$shellConfig" "$shellConfigBackup"
-  fi
-
-  if directoryExist $zshCustom; then
-    warn "ZSH Custom directory exists - creating backup"
-    mv "$zshCustom" "$zshCustom.backup"
-    mkdir "$zshCustom"
-  else
-    info "ZSH Custom directory don't exist - will create one"
-    mkdir $zshCustom
-    mkdir $zshCustom/themes
-    mkdir $zshCustom/plugins
-    checked "ZSH Custom directory is ready"
-  fi
-
-
-  cp $package/files/zshrc $shellConfig
-  checked "ZSH configuration is created $shellConfig"
-
-  info "Copying additional files"
-  cp -v $package/files/alias.zsh $zshCustom
-  cp -v $package/files/functions.zsh $zshCustom
-  cp -v $package/files/plugins/* $zshCustom/plugins
-
-  cp "$package/files/logo.txt" "$zshCustom/logo.txt"
-  checked "Motivation Words For Today are installed"
-
   info "Install additional packages used in the above configurations"
   brew install exa
 
   checked "Packages are installed"
 
-  updateVersion $DVCFG 'shell' $VERSION
+  update
 
   packagedone "Shell is configure and ready to use."
 }
@@ -89,9 +60,39 @@ function sync() {
   cp -vf $zshCustom/plugins/*.plugin.zsh "$package/files/plugins/"
   checked "Synced custom plugins"
 
-  updateVersion 'shell' $VERSION
-
   packagedone "Shell is sync back to dotfiles - require review and commit."
+}
+
+function update() {
+  if fileExist $shellConfig; then
+    warn "ZSH configuration already exist - need to backup $shellConfigBackup"
+    cp -vf "$shellConfig" "$shellConfigBackup"
+  fi
+
+  if directoryExist $zshCustom; then
+    warn "ZSH Custom directory exists - creating backup"
+    mv "$zshCustom" "$zshCustom.backup"
+    mkdir "$zshCustom"
+  else
+    info "ZSH Custom directory don't exist - will create one"
+    mkdir $zshCustom
+    mkdir $zshCustom/themes
+    mkdir $zshCustom/plugins
+    checked "ZSH Custom directory is ready"
+  fi
+
+  cp $package/files/zshrc $shellConfig
+  checked "ZSH configuration is created $shellConfig"
+
+  info "Copying additional files"
+  cp -v $package/files/alias.zsh $zshCustom
+  cp -v $package/files/functions.zsh $zshCustom
+  cp -v $package/files/plugins/* $zshCustom/plugins
+
+  cp "$package/files/logo.txt" "$zshCustom/logo.txt"
+  checked "Motivation Words For Today are installed"
+
+  updateVersion 'shell' $VERSION
 }
 
 function help() {
@@ -101,6 +102,8 @@ function help() {
   helptext "This include command line aliases, theme, automation and more"
   helptext " "
   helptext " --help      - provide this information"
+  helptext " --install   - install package"
+  helptext " --update    - update package"
   helptext " --version   - package version"
   helptext " --uninstall - remove all installed files"
   helptext " --sync      - copy files back to Dotfile"
@@ -122,12 +125,6 @@ function uninstall() {
 }
 
 
-if [ "$1" == "--help" ]; then
-  banner
-  help
-  exit;
-fi
-
 if [ "$1" == "--version" ]; then
   version
   exit;
@@ -143,5 +140,17 @@ if [ "$1" == "--uninstall" ]; then
   exit;
 fi
 
+if [ "$1" == "--install" ]; then
+  banner
+  setup
+  exit
+fi
+
+if [ "$1" == "--update" ]; then
+  update
+  exit
+fi
+
 banner
-setup
+help
+exit
