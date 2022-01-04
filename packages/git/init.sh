@@ -2,7 +2,7 @@
 
 source ./interface.sh
 
-VERSION="1.0.3"
+VERSION="1.0.4"
 
 function banner() {
   echo "  "
@@ -32,6 +32,7 @@ gitbin='git'
 package="$PWD/$(dirname "$0")"
 gitconfig=$HOME/.gitconfig
 gitconfigbackup=$HOME/.gitconfig.backup
+gitcommitmessage=$HOME/.gitcommitmessage
 npmbin='npm'
 
 gitname='Bozhidar Dryanovski'
@@ -112,15 +113,26 @@ function sync() {
 
   askQuestion "Are you sure that you want to continue?"
 
-  checked "Sync .gitconfig"
-  cp -f "$gitconfig" "$package/files/gitconfig"
+  cp -f $gitconfig $package/files/gitconfig
+  checked "Synced $gitconfig"
+
+  cp -f $gitcommitmessage $package/files/gitcommitmessage
+  checked "Synced $gitcommitmessage"
 
   packagedone "Git is sync back to dotfiles - require review and commit."
 }
 
 function update() {
   cp "$package/files/gitconfig" "$gitconfig"
-  checked "updating ~/.gitconfig"
+  checked "Updated $gitconfig"
+
+  if fileExist $gitcommitmessage; then
+    checked "$gitommitmessage exist creating backup $gitcommitmessage.backup"
+    cp -f "$gitcommitmessage" "$gitcommitmessage.backup"
+  fi
+
+  cp $package/files/gitcommitmessage $gitcommitmessage
+  checked "Updated $gitcommitmessage"
 
   updateVersion 'git' $VERSION  
 }
