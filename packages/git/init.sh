@@ -127,7 +127,7 @@ function update() {
   checked "Updated $gitconfig"
 
   if fileExist $gitcommitmessage; then
-    checked "$gitommitmessage exist creating backup $gitcommitmessage.backup"
+    checked "$gitcommitmessage exist creating backup $gitcommitmessage.backup"
     cp -f "$gitcommitmessage" "$gitcommitmessage.backup"
   fi
 
