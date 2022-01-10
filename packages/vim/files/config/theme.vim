@@ -10,6 +10,8 @@
 Plug 'dracula/vim'
 Plug 'fenetikm/falcon'
 
+Plug 'bluz71/vim-nightfly-guicolors'
+
 " color schemes
 if (has("termguicolors"))
  set termguicolors
@@ -31,4 +33,14 @@ endif
 "
 let g:falcon_airline = 1
 let g:airline_theme = 'falcon'
-autocmd User PlugLoaded colorscheme falcon
+
+"
+" Nightfly
+"
+let g:lightline = { 'colorscheme': 'nightfly' } 
+let g:nightflyCursorColor = 1
+
+"
+" When all plugins are loaded execute the following commands
+"
+autocmd User PlugLoaded colorscheme nightfly

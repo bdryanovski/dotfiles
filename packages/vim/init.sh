@@ -2,7 +2,7 @@
 
 source ./interface.sh
 
-VERSION="1.1.1"
+VERSION="1.1.2"
 
 function banner() {
   echo "  "
