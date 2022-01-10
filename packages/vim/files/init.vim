@@ -46,6 +46,7 @@ set wildmode=longest,list   " get bash-like tab completions
 set cc=120                  " set an 120 column border for good coding style
 set mouse=a                 " enable mouse click
 set cursorline              " highlighd current cursorline
+set nowrap                  " don't wrap lines
 
 set list
 set listchars=tab:‣\ ,trail:·,precedes:«,extends:»
