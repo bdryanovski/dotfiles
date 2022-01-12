@@ -2,7 +2,7 @@
 
 source ./interface.sh
 
-VERSION="1.0.2"
+VERSION="1.0.3"
 
 function banner() {
   echo "                                                                     ,,,,,                ,,        "
@@ -88,7 +88,7 @@ function setup() {
   defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
 
   infoblock "Disable press-and-hold for keys in favor of key repeat"
-  defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+  defaults write -g ApplePressAndHoldEnabled -bool false
 
   infoblock "Fast keyboard"
   defaults write NSGlobalDomain KeyRepeat -int 0
