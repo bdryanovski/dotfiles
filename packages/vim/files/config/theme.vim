@@ -12,6 +12,8 @@ Plug 'fenetikm/falcon'
 
 Plug 'bluz71/vim-nightfly-guicolors'
 
+Plug 'ray-x/aurora'
+
 " color schemes
 if (has("termguicolors"))
  set termguicolors
@@ -43,4 +45,4 @@ let g:nightflyCursorColor = 1
 "
 " When all plugins are loaded execute the following commands
 "
-autocmd User PlugLoaded colorscheme nightfly
+autocmd User PlugLoaded colorscheme aurora 
