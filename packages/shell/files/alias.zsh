@@ -9,6 +9,13 @@ alias getNodeSize='find . -name "node_modules" -type d -prune -print | xargs du 
 alias ll="exa -a -l --no-user --no-time --git -s type --icons"
 alias l="exa -a -s type --icons"
 
+#
+# Navigation
+#
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+
 # Usefull stuff for presentation and seeing dotfiles
 alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
 alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
