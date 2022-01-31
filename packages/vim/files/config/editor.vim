@@ -25,3 +25,9 @@ Plug 'hrsh7th/vim-vsnip'
 " Github Copilot
 "
 Plug 'github/copilot.vim'
+
+
+"
+" Vim Support for MDX
+"
+Plug 'jxnblk/vim-mdx-js'
