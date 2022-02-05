@@ -2,7 +2,7 @@
 
 source ./interface.sh
 
-VERSION=2.1.0
+VERSION=2.2.0
 
 function setup() {
   askQuestion "🧐 Do you wish to install all dotfiles?"
