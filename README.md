@@ -55,45 +55,12 @@ The basic structure is that every package support few things as commands:
   * setup - the initial task to be run without any arguments
   * sync - syncing the current stage of the computer with the package - (they way to move things between machines)
 
+To get the full list of available packages run:
 
 ```bash
-  🤌  Available packages to run:
-
-  packages/base
-
-    Description:
-    Basic system setup require for later packages to pass without depending on each other
-
-  packages/git
-
-    Description:
-    Configure control version tooling
-    This include git configuration, additional commands
-    Also instructions how to setup GPG Signing
-
-  packages/nodejs
-
-    Setup NodeJS for development
-
-  packages/osx
-
-    Description:
-    This package will configure MacOS by setting and modify system settings
-    From system settings, env, and more
-
-  packages/shell
-
-    Description:
-    Setup ZSH and install Homebrew.
-    This include command line aliases, theme, automation and more
-
-  packages/vim
-
-    Description:
-    Setup NeoVim and Vim as editor
-    Configure the editors for development by installing additional packages
-
+bash init.sh --packages
 ```
+
 
 ### Versioning
 
@@ -102,3 +69,7 @@ There are a lot of internl version here - so some explanation will be needed. Th
 Every package have it's own version, this way I could track what version I'm running on my machine and do I need to update or not? Few of the packages could have a bigger version than other - just because they don't update that often, for example `base` package may not require a lot of changes over time like for example `vim` package that sync NeoVim across different machines and it's always under changes.
 
 Running `--status` will return list of packages - the version it's installed and the version that the Dotfile have, marked with red are packages that are out of sync. This way after `git pull` I could compare what changed over time and do I want to update it.
+
+### Banners
+
+The banners are generated from here https://asciiart.club/ and are used to show the package that is currently running.
