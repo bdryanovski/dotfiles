@@ -41,7 +41,7 @@ function setup() {
   if commandExist $gobin; then
     checked "GOlang is already installed"
   else
-    missed "GOlang is not installed - trying to fix this"
+    error "GOlang is not installed - trying to fix this"
 
     brew install golang
     checked "Go is installed"
