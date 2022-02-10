@@ -8,6 +8,7 @@ alias getNodeSize='find . -name "node_modules" -type d -prune -print | xargs du 
 
 alias ll="exa -a -l --no-user --no-time --git -s type --icons"
 alias l="exa -a -s type --icons"
+alias ls="l"
 
 #
 # Navigation
