@@ -26,6 +26,11 @@ alias hideall='defaults write com.apple.finder AppleShowAllFiles NO && killall F
 alias dsclean='find . -type f -name .DS_Store -print0 | xargs -0 rm'
 
 #
+# Git, run inside the git project will change directory to the git root
+#
+alias githome="cd $(git rev-parse --show-toplevel)"
+
+#
 # NeoVide
 #
 # Need to be installed and configure
