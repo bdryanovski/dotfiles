@@ -10,6 +10,7 @@ export ZSH_CUSTOM=~/.zshrc_custom
 # Macbook M1 FIX
 if [[ $(uname -m) == 'arm64' ]]; then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+  fpath=( "${ZDOTDIR:-$HOME}/.zfunctions" $fpath )
 fi
 
 # Autocomplete case-insensitive
@@ -35,8 +36,12 @@ then
   # zsh "$ZSH_CUSTOM/themes/spaceship-prompt/scripts/install.sh"
 fi
 
-fpath=( "${ZDOTDIR:-$HOME}/.zfunctions" $fpath )
-ln -sf "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh" "${ZDOTDIR:-$HOME}/.zfunctions/prompt_spaceship_setup"
+
+# Make sure to recreate the link only if not done already
+if [ ! -f "${ZDOTDIR:-$HOME}/.zfunctions/prompt_spaceship_setup" ]
+then
+  ln -sf "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh" "${ZDOTDIR:-$HOME}/.zfunctions/prompt_spaceship_setup"
+fi
 
 prompt spaceship
 
