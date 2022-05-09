@@ -7,13 +7,17 @@ export VISUAL=nvim
 # Would you like to use another custom folder than $ZSH/custom?
 export ZSH_CUSTOM=~/.zshrc_custom
 
+# Macbook M1 FIX
+if [[ $(uname -m) == 'arm64' ]]; then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+fi
+
 # Autocomplete case-insensitive
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 
 autoload -U promptinit && promptinit
 autoload -Uz compinit && compinit
 autoload -Uz vcs_info && vcs_info
-
 #
 # THEME
 #
@@ -21,8 +25,18 @@ if [ ! -d "$ZSH_CUSTOM/themes/spaceship-prompt/" ]
 then
   echo "Installing Spaceship theme ..."
   git clone https://github.com/spaceship-prompt/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
-  zsh "$ZSH_CUSTOM/themes/spaceship-prompt/scripts/install.sh"
+
+  # Macbook M1 fix
+  if [[ $(uname -m) == 'arm64' ]]; then
+    ln -sf "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh" "$(brew --prefix)/share/zsh/site-functions/prompt_spaceship_setup"
+
+  fi
+
+  # zsh "$ZSH_CUSTOM/themes/spaceship-prompt/scripts/install.sh"
 fi
+
+fpath=( "${ZDOTDIR:-$HOME}/.zfunctions" $fpath )
+ln -sf "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh" "${ZDOTDIR:-$HOME}/.zfunctions/prompt_spaceship_setup"
 
 prompt spaceship
 
@@ -128,5 +142,4 @@ load-nvmrc() {
 }
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
-
 
