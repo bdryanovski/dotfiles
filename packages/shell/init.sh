@@ -76,8 +76,8 @@ function update() {
   else
     info "ZSH Custom directory don't exist - will create one"
     mkdir $zshCustom
-    mkdir $zshCustom/themes
-    mkdir $zshCustom/plugins
+    mkdir $zshCustom/themes/
+    mkdir $zshCustom/plugins/
     checked "ZSH Custom directory is ready"
   fi
 
