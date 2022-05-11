@@ -2,7 +2,7 @@
 
 source ./interface.sh
 
-VERSION="1.1.0"
+VERSION="1.1.1"
 
 function banner() {
   echo "  ____                  "
@@ -86,8 +86,13 @@ function setup() {
   fi
 
   brew tap homebrew/cask-fonts
-  brew install --cask font-sauce-code-pro-nerd-font
+  checked "Brew tap homebrew/cask-fonts"
+
   checked "Installing Fonts for Iterm and NeoVim later on"
+  brew install --cask font-sauce-code-pro-nerd-font
+
+  checked "Installing Fonts for VS Code - Fira Code"
+  brew install --cask font-fira-code
 
   updateVersion 'base' $VERSION  
 
