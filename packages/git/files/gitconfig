@@ -1,7 +1,6 @@
 [user]
-	name = Bozhidar Dryanovski
+	name = bdryanovski
 	email = bozhidar.dryanovski@gmail.com
-	signingkey = FFA787B9B09B5477
 [core]
 	quotepath = false
   editor = nvim
@@ -11,18 +10,21 @@
   template = ~/.gitcommitmessage
 	gpgSign = true
 [alias]
-  commit = commit -s -S 
+  commit = commit -s -S
   merge-signed = !git merge --no-commit $1 && git commit -i -s -S
   sign = commit --amend --no-edit -n -S -s
   a = add
   b = branch
-  c = commit 
+  c = commit
   co = checkout
   aa = add --all
   ca = commit --amend
   cam = commit --amend --message
   cane = commit --amend -no-edit
   # log
+
+  changelog = !" git log --oneline $(git describe --tags --abbrev=0 @^)..@ --pretty='- %s'"
+
   # log with a text-based graphical representation of the commit history.
   lg = log --graph
 
@@ -69,7 +71,7 @@
   whorank = shortlog --summary --numbered --no-merges
   # Show who contributed with summarized changes
   who = shortlog --summary --
-  
+
   # List all issues mentioned in commit messages between range of commits
   #
   # Replace `\\\"ISSUE-[0-9]\\+\\\"` regular expression with one matching your issue tracking system.
@@ -133,7 +135,7 @@
 
   # Execute shell scripts. Git always runs scripts in the top directory.
   # For example "git exec pwd" will always show you the top directory.
-  exec = ! exec 
+  exec = ! exec
 
 
   ### ADVANCED ALIASES ###
