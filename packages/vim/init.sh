@@ -2,7 +2,7 @@
 
 source ./interface.sh
 
-VERSION="1.1.6"
+VERSION="1.1.7"
 
 function banner() {
   echo "  "
@@ -89,7 +89,7 @@ function update() {
   checked "Setuping NeoVim configuration"
   cp -R "$package/files/" "$nvimconfigdir"
 
-  updateVersion 'vim' $VERSION  
+  updateVersion 'vim' $VERSION
 }
 
 function sync() {
