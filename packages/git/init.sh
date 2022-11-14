@@ -2,7 +2,7 @@
 
 source ./interface.sh
 
-VERSION="1.0.5"
+VERSION="1.0.6"
 
 function banner() {
   echo "  "
@@ -134,7 +134,7 @@ function update() {
   cp $package/files/gitcommitmessage $gitcommitmessage
   checked "Updated $gitcommitmessage"
 
-  updateVersion 'git' $VERSION  
+  updateVersion 'git' $VERSION
 }
 
 if [ "$1" == "--version" ]; then
@@ -148,7 +148,7 @@ if [ "$1" == "--sync" ]; then
 fi
 
 if [ "$1" == "--update" ]; then
-  update 
+  update
   exit
 fi
 
