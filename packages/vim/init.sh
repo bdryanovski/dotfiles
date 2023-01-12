@@ -2,7 +2,7 @@
 
 source ./interface.sh
 
-VERSION="1.1.7"
+VERSION="2.0.0"
 
 function banner() {
   echo "  "
@@ -72,16 +72,13 @@ function setup() {
     error "Vim is not installed but I prefer nvim so this is on you/me"
   fi
 
-  checked "Installing TypeScript and some additional packages required for type complition"
-  npm install -g typescript typescript-language-server diagnostic-languageserver
-
   update
 
   packagedone "Editors are ready to be used."
 }
 
 function update() {
-  if fileExist "$nvimconfigdir/init.vim"; then
+  if fileExist "$nvimconfigdir/init.lua"; then
     checked "NeoVim is already setup - backuping it before continue"
     cp -R "$nvimconfigdir" "$nvimconfigdir.backup"
   fi
