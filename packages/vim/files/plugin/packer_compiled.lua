@@ -218,6 +218,21 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/bdryanovski/.local/share/nvim/site/pack/packer/start/vim-graphql",
     url = "https://github.com/jparise/vim-graphql"
+  },
+  ["vim-vsnip"] = {
+    loaded = true,
+    path = "/Users/bdryanovski/.local/share/nvim/site/pack/packer/start/vim-vsnip",
+    url = "https://github.com/hrsh7th/vim-vsnip"
+  },
+  ["vim-vsnip-integ"] = {
+    loaded = true,
+    path = "/Users/bdryanovski/.local/share/nvim/site/pack/packer/start/vim-vsnip-integ",
+    url = "https://github.com/hrsh7th/vim-vsnip-integ"
+  },
+  ["vim-wakatime"] = {
+    loaded = true,
+    path = "/Users/bdryanovski/.local/share/nvim/site/pack/packer/start/vim-wakatime",
+    url = "https://github.com/wakatime/vim-wakatime"
   }
 }
 

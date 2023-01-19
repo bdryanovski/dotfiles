@@ -49,6 +49,9 @@ packer.startup(function(use)
     use 'hrsh7th/cmp-nvim-lsp' -- for integration with lsp
     use 'hrsh7th/nvim-cmp' -- complitter
 
+    use 'hrsh7th/vim-vsnip'
+    use 'hrsh7th/vim-vsnip-integ'
+
     -- Snippets
     use 'L3MON4D3/LuaSnip'
 
@@ -93,6 +96,9 @@ packer.startup(function(use)
 
     -- GraphQL
     use 'jparise/vim-graphql'
+
+    -- TimeTrackers
+    use 'wakatime/vim-wakatime'
 
     -- NPM integrations
     use {
