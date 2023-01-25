@@ -11,11 +11,40 @@ local fb_actions = require "telescope".extensions.file_browser.actions
 
 telescope.setup {
     defaults = {
-        path_display = { "smart" },
-        mappings = {
-            n = {
-                ["q"] = actions.close
+        path_display      = { "smart" },
+        vimgrep_arguments = {
+            'rg',
+            '--color=never',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--smart-case'
+        },
+        layout_config     = {
+            horizontal = {
+                preview_cutoff = 120,
             },
+            prompt_position = "bottom",
+        },
+        prompt_prefix     = '  ',
+        color_devicons    = true,
+        mappings          = {
+            i = {
+                ["<C-x>"] = false,
+                ["<C-j>"] = actions.move_selection_next,
+                ["<C-k>"] = actions.move_selection_previous,
+                ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+                ["<C-s>"] = actions.cycle_previewers_next,
+                ["<C-a>"] = actions.cycle_previewers_prev,
+                ["<C-h>"] = "which_key",
+                ["<ESC>"] = actions.close,
+            },
+            n = {
+                ["<C-s>"] = actions.cycle_previewers_next,
+                ["<C-a>"] = actions.cycle_previewers_prev,
+                ["q"] = actions.close
+            }
         },
     },
     extensions = {
