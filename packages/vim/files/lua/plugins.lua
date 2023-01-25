@@ -29,6 +29,7 @@ packer.startup(function(use)
 
     -- Theme
     use "EdenEast/nightfox.nvim"
+    use 'folke/tokyonight.nvim'
 
     -- Status line
     use 'hoob3rt/lualine.nvim'
@@ -100,6 +101,14 @@ packer.startup(function(use)
     -- TimeTrackers
     use 'wakatime/vim-wakatime'
 
+    use {
+        "folke/which-key.nvim",
+        config = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+        end
+    }
+
     -- NPM integrations
     use {
         'David-Kunz/cmp-npm',
@@ -110,6 +119,16 @@ packer.startup(function(use)
 
     -- Indent
     use "lukas-reineke/indent-blankline.nvim"
+
+    -- Startup Screen
+    use {
+        'glepnir/dashboard-nvim',
+        event = 'VimEnter',
+        config = function()
+            require('dashboard').setup {
+            }
+        end
+    }
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
