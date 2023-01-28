@@ -143,7 +143,8 @@ keymap('n', 'gr', '<Cmd>Lspsaga rename<CR>', opts)
 keymap('i', '<C-k>', '<Cmd>Lspsaga signature_help<CR>', opts)
 
 -- Code action
-keymap('n', '<leader>ca', '<Cmd>Lspsaga code_action<CR>', opts)
+-- keymap('n', '<leader>ca', '<Cmd>Lspsaga code_action<CR>', opts)
+keymap('n', '<leader>ca', '<Cmd>CodeActionMenu<CR>', opts)
 ---------------------------------------------------------------------------------------
 
 -- Go to Definition

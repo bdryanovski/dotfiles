@@ -85,6 +85,9 @@ packer.startup(function(use)
     -- Additional LSP
     use 'williamboman/mason.nvim'
     use 'williamboman/mason-lspconfig.nvim'
+    use 'weilbith/nvim-code-action-menu'
+    use 'ray-x/lsp_signature.nvim'
+
 
     -- Code formatting
     use 'jose-elias-alvarez/null-ls.nvim'
@@ -120,6 +123,9 @@ packer.startup(function(use)
 
     -- Startup Screen
     use 'glepnir/dashboard-nvim'
+
+    -- Shade inactive windows
+    use 'sunjon/shade.nvim'
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
