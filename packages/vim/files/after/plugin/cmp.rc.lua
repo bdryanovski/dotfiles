@@ -9,7 +9,6 @@ cmp.setup({
     snippet = {
         expand = function(args)
             require('luasnip').lsp_expand(args.body)
-            vim.fn["vsnip#anonymous"](args.body)
         end
     },
 
@@ -31,17 +30,37 @@ cmp.setup({
 
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
-        { name = 'vsnip' },
-        { name = 'buffer' }
+        { { name = 'buffer' } }
     }),
 
     formatting = {
-        format = lspkind.cmp_format({ writh_text = false, maxwidth = 50 })
+        format = lspkind.cmp_format({
+            writh_text = false,
+            maxwidth = 50
+        })
     }
+})
+
+-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline({ '/', '?' }, {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+        { name = 'buffer' }
+    }
+})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+        { name = 'path' }
+    }, {
+        { name = 'cmdline' }
+    })
 })
 
 
 vim.cmd [[
-  set completeopt=menuone,noinsert,noselect
+  set completeopt=menu,menuone,noinsert,noselect
   highlight! default link CmpItemKind CmpItemMenuDefault
 ]]
