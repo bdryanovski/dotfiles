@@ -48,10 +48,8 @@ packer.startup(function(use)
     use 'onsails/lspkind-nvim' -- vscode pictograms
     use 'hrsh7th/cmp-buffer' -- for buffer words
     use 'hrsh7th/cmp-nvim-lsp' -- for integration with lsp
+    use 'hrsh7th/cmp-cmdline'
     use 'hrsh7th/nvim-cmp' -- complitter
-
-    use 'hrsh7th/vim-vsnip'
-    use 'hrsh7th/vim-vsnip-integ'
 
     -- Snippets
     use 'L3MON4D3/LuaSnip'
@@ -89,7 +87,7 @@ packer.startup(function(use)
     use 'williamboman/mason-lspconfig.nvim'
 
     -- Code formatting
-    -- use 'jose-elias-alvarez/null-ls.nvim'
+    use 'jose-elias-alvarez/null-ls.nvim'
 
     -- Git
     use 'lewis6991/gitsigns.nvim'
@@ -121,14 +119,7 @@ packer.startup(function(use)
     use "lukas-reineke/indent-blankline.nvim"
 
     -- Startup Screen
-    use {
-        'glepnir/dashboard-nvim',
-        event = 'VimEnter',
-        config = function()
-            require('dashboard').setup {
-            }
-        end
-    }
+    use 'glepnir/dashboard-nvim'
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins

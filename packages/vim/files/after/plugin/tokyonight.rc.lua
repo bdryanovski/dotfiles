@@ -29,7 +29,9 @@ tokyonight.setup({
     --- You can override specific color groups to use other groups or a hex color
     --- function will be called with a ColorScheme table
     ---@param colors ColorScheme
-    on_colors = function(colors) end,
+    on_colors = function(colors)
+        colors.border = '#565f89'
+    end,
 
     --- You can override specific highlights to use other groups or a hex color
     --- function will be called with a Highlights and ColorScheme table
@@ -37,5 +39,8 @@ tokyonight.setup({
     ---@param colors ColorScheme
     on_highlights = function(highlights, colors) end,
 })
+
+
+vim.g.tokyonight_colors = { border = "orange" }
 
 vim.cmd("colorscheme tokyonight")
