@@ -124,6 +124,11 @@ _G.packer_plugins = {
     path = "/Users/bdryanovski/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
   },
+  ["lorem.nvim"] = {
+    loaded = true,
+    path = "/Users/bdryanovski/.local/share/nvim/site/pack/packer/start/lorem.nvim",
+    url = "https://github.com/derektata/lorem.nvim"
+  },
   ["lsp_signature.nvim"] = {
     loaded = true,
     path = "/Users/bdryanovski/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim",
@@ -253,6 +258,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/bdryanovski/.local/share/nvim/site/pack/packer/start/vim-graphql",
     url = "https://github.com/jparise/vim-graphql"
+  },
+  ["vim-mdx-js"] = {
+    loaded = true,
+    path = "/Users/bdryanovski/.local/share/nvim/site/pack/packer/start/vim-mdx-js",
+    url = "https://github.com/jxnblk/vim-mdx-js"
   },
   ["vim-wakatime"] = {
     loaded = true,
