@@ -35,7 +35,10 @@ packer.startup(function(use)
     use 'hoob3rt/lualine.nvim'
 
     -- File Explorer
-    use("nvim-tree/nvim-tree.lua")
+    use {
+        "nvim-tree/nvim-tree.lua",
+        commit = "8b8d457e07d279976a9baac6bbff5aa036afdc5f"
+    }
 
     -- LSP / TypeScript
     use 'neovim/nvim-lspconfig'
@@ -96,8 +99,6 @@ packer.startup(function(use)
     use 'lewis6991/gitsigns.nvim'
     use 'dinhhuy258/git.nvim'
 
-    -- GraphQL
-    use 'jparise/vim-graphql'
 
     -- TimeTrackers
     use 'wakatime/vim-wakatime'
@@ -124,8 +125,16 @@ packer.startup(function(use)
     -- Startup Screen
     use 'glepnir/dashboard-nvim'
 
+    -- Languages
+    use 'jxnblk/vim-mdx-js'
+    use 'jparise/vim-graphql'
+
+
     -- Shade inactive windows
     use 'sunjon/shade.nvim'
+
+    -- Lorem Ipsum
+    use "derektata/lorem.nvim"
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
