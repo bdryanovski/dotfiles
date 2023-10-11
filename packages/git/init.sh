@@ -2,7 +2,7 @@
 
 source ./interface.sh
 
-VERSION="1.0.6"
+VERSION="1.0.8"
 
 function banner() {
   echo "  "
@@ -33,6 +33,8 @@ package="$PWD/$(dirname "$0")"
 gitconfig=$HOME/.gitconfig
 gitconfigbackup=$HOME/.gitconfig.backup
 gitcommitmessage=$HOME/.gitcommitmessage
+gittemplates=$HOME/.git_template
+gittemplatesbackup=$HOME/.git_template.backup
 npmbin='npm'
 
 gitname='Bozhidar Dryanovski'
@@ -53,6 +55,13 @@ function setup() {
   if fileExist $gitconfig; then
     checked "git configuration file exist already - creating backup $gitconfigbackup"
     cp -f "$gitconfig" "$gitconfigbackup"
+  fi
+
+  if directoryExist $gittemplates; then
+      checked "git templates exist make a backup $gittemplatesbackup"
+      cp -fr "$gittemplates" "$gittemplatesbackup"
+
+      git config --global init.templatedir "$gittemplates"
   fi
 
   update
@@ -119,6 +128,9 @@ function sync() {
   cp -f $gitcommitmessage $package/files/gitcommitmessage
   checked "Synced $gitcommitmessage"
 
+  cp -fr $gittemplates $packages/files/gittemplates
+  checked "Synced $gittemplates"
+
   packagedone "Git is sync back to dotfiles - require review and commit."
 }
 
@@ -133,6 +145,11 @@ function update() {
 
   cp $package/files/gitcommitmessage $gitcommitmessage
   checked "Updated $gitcommitmessage"
+
+  if directoryExist $gittemplates; then
+      cp -fr $package/files/gittemplates $gittemplates
+      checked "Update git templates directory"
+  fi
 
   updateVersion 'git' $VERSION
 }
