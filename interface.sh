@@ -38,11 +38,11 @@ function isMacOS() {
 }
 
 function checked() {
-  echo -e "${c_green}✅ $1${c_reset}"
+  echo -e "${c_green}👍 $1${c_reset}"
 }
 
 function error() {
-  echo -e "${c_red}❌ $1${c_reset}"
+  echo -e "${c_red}🚨 $1${c_reset}"
 }
 
 function info() {
@@ -129,4 +129,11 @@ function makeSureDotfileVersionFileExist() {
   if ! fileExist $DVCFG; then
     touch $DVCFG
   fi
+}
+
+function compareFile() {
+    echo " "
+    echo "🤙 Comparing $1 to $2 "
+    echo " "
+    diff -y --ignore-blank-lines --width 150 --color $1 $2
 }
