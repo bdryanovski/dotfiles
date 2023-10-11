@@ -1,0 +1,46 @@
+#!/bin/sh
+
+# post-commit
+
+#
+# Take a photo of you, whenever you make a commit
+#
+# This is an improved version of Víctor Martínez original post:
+# http://coderwall.com/p/xlatfq
+#
+# Improvements:
+#   * This is non-blocking (you dont have to wait for your image to be taken)
+#   * It's plug-and-play (and creates the required folder)
+#   * We include the repository name (or the folder name of the repository to be exact)
+#   * It's not requiring ruby to run (it just uses bash)
+# 
+#
+# > brew install imagesnap
+# Save this file as ~/.git_template/hooks/post-commit
+# then do:
+# > chmod +x ~/.git_template/hooks/post-commit
+# > git config --global init.templatedir '~/.git_template'
+#
+# this will add the post-commit to all new repositories.
+# To add to an existing one, run
+# > git init
+# in the repository.
+#
+# Want to create a cool video? Use this to assemble the pictures:
+# http://www.dayofthenewdan.com/projects/tlassemble
+
+filename=~/.git_shots/$(basename $PWD)/$(date +%s)_$(basename $PWD).jpg
+
+if [ -d ".git" ]; then
+    last_commit=$(git log -1 HEAD --pretty=format:%s)
+else
+    last_commit="This is not a Git repository"
+fi
+
+forked_image() {
+    mkdir -p ~/.git_shots/$(basename $PWD)
+
+    imagesnap -q -w 3 $filename && ffmpeg -i $filename -loglevel error -hide_banner -y -vf "drawtext=text='$last_commit':fontcolor=white:fontsize=75:x=0:y=1000:" $filename &
+}
+
+forked_image &
