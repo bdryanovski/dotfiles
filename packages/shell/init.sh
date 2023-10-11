@@ -2,7 +2,7 @@
 
 source ./interface.sh
 
-VERSION="2.1.4"
+VERSION="2.1.5"
 
 
 function banner() {
@@ -107,6 +107,7 @@ function help() {
   helptext " --version   - package version"
   helptext " --uninstall - remove all installed files"
   helptext " --sync      - copy files back to Dotfile"
+  helptext " --compare   - compare local and remote files"
   helptext " "
 }
 
@@ -122,6 +123,13 @@ function uninstall() {
   rm -rvf $shellConfig $shellConfigBackup $zshCustom $zshCustom.backup
 
   packagedone "Uninstall shell package is done."
+}
+
+function compare() {
+    info "Compare local to remote changes:"
+
+    compareFile $shellConfig $package/files/zshrc
+
 }
 
 
@@ -149,6 +157,11 @@ fi
 if [ "$1" == "--update" ]; then
   update
   exit
+fi
+
+if [ "$1" == "--compare" ]; then
+    compare
+    exit
 fi
 
 banner
