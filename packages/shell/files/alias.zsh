@@ -13,6 +13,7 @@ alias ls="l"
 #
 # Navigation
 #
+alias cd=z
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -35,4 +36,4 @@ alias githome="cd $(git rev-parse --show-toplevel)"
 # NeoVide
 #
 # Need to be installed and configure
-alias neovide=~/Github/neovide/target/release/neovide --multigrid
+# alias neovide=~/Github/neovide/target/release/neovide --multigrid
