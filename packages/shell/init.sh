@@ -67,7 +67,7 @@ function sync() {
     checked "zoxide is installed"
   else 
     brew install zoxide;
-  end
+  fi 
 
   packagedone "Shell is sync back to dotfiles - require review and commit."
 }
