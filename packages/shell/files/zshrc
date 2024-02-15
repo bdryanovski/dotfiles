@@ -146,5 +146,9 @@ function nvm_auto_switch {
 autoload -U add-zsh-hook
 add-zsh-hook chpwd nvm_auto_switch
 
+if hash zoxide; then
+  eval "$(zoxide init zsh)"
+fi
+
 
 source "$ZSH_CUSTOM/externals.zsh"
