@@ -32,6 +32,7 @@ function setup() {
 
   info "Install additional packages used in the above configurations"
   brew install exa
+  brew install zoxide
 
   checked "Packages are installed"
 
@@ -59,6 +60,14 @@ function sync() {
 
   cp -vf $zshCustom/plugins/*.plugin.zsh "$package/files/plugins/"
   checked "Synced custom plugins"
+
+  info "Checking executables ..."
+
+  if hash z; then
+    checked "zoxide is installed"
+  else 
+    brew install zoxide;
+  end
 
   packagedone "Shell is sync back to dotfiles - require review and commit."
 }

@@ -115,30 +115,36 @@ source "$ZSH_CUSTOM/functions.zsh"
 #
 # JavaScript
 #
+#
+# NVM
+#
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-
-# place this after nvm initialization!
-autoload -U add-zsh-hook
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
+if [ "$(command -v nvm)" = "" ]; then
+  if [ -s "$NVM_DIR/nvm.sh" ]; then
+    source "$NVM_DIR/nvm.sh"
+  else
+    echo "could not find nvm"
   fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+fi
 
+function nvm_auto_switch {
+  local NVM_VERSION
+  local NVM_RC_FILE=`nvm_find_nvmrc`
+
+  if [ "$NVM_RC_FILE" = "" ]; then
+    NVM_VERSION=`nvm_version $(nvm_alias default)`
+  else
+    NVM_VERSION=`nvm_version $(cat $NVM_RC_FILE)`
+  fi
+
+  [ "$(nvm_version_path $NVM_VERSION)/bin" = "$NVM_BIN" ] || nvm use "$NVM_VERSION"
+}
+
+autoload -U add-zsh-hook
+add-zsh-hook chpwd nvm_auto_switch
+
+
+source "$ZSH_CUSTOM/externals.zsh"
