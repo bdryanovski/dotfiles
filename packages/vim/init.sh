@@ -36,10 +36,6 @@ function setup() {
     checked "Try to update NeoVim with the latest version from Homebrew"
     brew upgrade neovim tree-sitter luajit
 
-    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-
-    checked "NeoVim Vim-Plug is installed"
   else
 
     brew install tree-sitter luajit neovim
