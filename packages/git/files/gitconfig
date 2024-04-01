@@ -21,6 +21,9 @@
   ca = commit --amend
   cam = commit --amend --message
   cane = commit --amend -no-edit
+
+  pushit = push --force-with-lease
+
   # log
 
   changelog = !" git log --oneline $(git describe --tags --abbrev=0 @^)..@ --pretty='- %s'"
@@ -192,3 +195,14 @@
 	helper = osxkeychain
 [init]
 	defaultBranch = master
+[fetch]
+  prune = true
+[rerere]
+  enabled = true
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+[maintenance]
+  auto = false
+  strategy = incremental
