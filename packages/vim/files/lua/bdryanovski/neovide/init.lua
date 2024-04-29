@@ -1,7 +1,7 @@
 if vim.g.neovide then
 	local g = vim.g
 
-	g.neovide_scroll_animation_length = 0.3
+	g.neovide_scroll_animation_length = 0.2
 	g.neovide_hide_mouse_when_typing = false
 	g.neovide_refresh_rate = 60
 	g.neovide_refresh_rate_idle = 5
