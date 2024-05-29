@@ -113,10 +113,33 @@ source "$ZSH_CUSTOM/alias.zsh"
 source "$ZSH_CUSTOM/functions.zsh"
 
 #
+# ZSH History settings
+#
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase 
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+#
+# Integrate FZF 
+#
+# Ctrl+r - find in previous command
+#
+eval "$(fzf --zsh)"
+
+
+#
 # JavaScript
 #
-#
 # NVM
+#
 #
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -146,9 +169,9 @@ function nvm_auto_switch {
 autoload -U add-zsh-hook
 add-zsh-hook chpwd nvm_auto_switch
 
+
 if hash zoxide; then
   eval "$(zoxide init zsh)"
 fi
-
 
 source "$ZSH_CUSTOM/externals.zsh"
