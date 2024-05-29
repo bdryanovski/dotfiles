@@ -61,14 +61,6 @@ function sync() {
   cp -vf $zshCustom/plugins/*.plugin.zsh "$package/files/plugins/"
   checked "Synced custom plugins"
 
-  info "Checking executables ..."
-
-  if hash z; then
-    checked "zoxide is installed"
-  else 
-    brew install zoxide;
-  fi 
-
   packagedone "Shell is sync back to dotfiles - require review and commit."
 }
 
@@ -100,6 +92,15 @@ function update() {
 
   cp "$package/files/logo.txt" "$zshCustom/logo.txt"
   checked "Motivation Words For Today are installed"
+
+
+  info "Checking executables ..."
+  if hash z; then
+    checked "zoxide is installed"
+  else 
+    brew install zoxide;
+  fi 
+
 
   updateVersion 'shell' $VERSION
 }
