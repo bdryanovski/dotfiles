@@ -27,11 +27,19 @@ return {
 			},
 			sections = {
 				lualine_a = {
-					{ "mode", separator = { left = "" }, right_padding = 2 },
+					{
+						"mode",
+						icons_enabled = true,
+						separator = { left = "" },
+						right_padding = 2,
+						fmt = function(str)
+							return str:sub(1, 1)
+						end,
+					},
 				},
 				lualine_b = { "branch", "diff", "diagnostics" },
 				lualine_c = { "filename" },
-				lualine_x = { "encoding", "filetype" },
+				lualine_x = { "encoding", { "filetype", colored = true, icon_only = true } },
 				lualine_y = { "progress" },
 				lualine_z = {
 					{ "location", separator = { right = "" }, left_padding = 2 },
