@@ -23,6 +23,13 @@ keymap.set(
 	{ desc = "Move down selected line / block of text in visual mode", silent = true }
 )
 
+-- Tabs and tab navigation
+keymap.set("n", "<leader>te", ":tabedit", { desc = "Create new tab", silent = true })
+keymap.set("n", "<tab>", ":tabnext<CR>", { desc = "Switch to next tab", silent = true })
+keymap.set("n", "<s-tab>", ":tabprev<CR>", { desc = "Go to previous tab", silent = true })
+keymap.set("n", "<C-w>", ":tabclose<Return>", { desc = "Close current tab", silent = true })
+keymap.set("n", "<C-to>", ":tabonly<CR>", { desc = "Close all other tabs", noremap = true, silent = true })
+
 -- Window managment
 keymap.set("n", "<Space>", "<C-w>w", { desc = "Go to next window", remap = true })
 keymap.set("", "s<left>", "<C-w>h", { desc = "Go to left window", remap = true })
@@ -38,11 +45,16 @@ keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase w
 
 keymap.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
 
+keymap.set("v", "<", "<gv", { desc = "Indent inner" })
+keymap.set("v", ">", ">gv", { desc = "Indent outter" })
+
 -- Too lazy to learn it
 -- https://neovim.io/doc/user/api.html#nvim_create_user_command()
 vim.api.nvim_create_user_command("Q", "q", {})
 vim.api.nvim_create_user_command("WQ", "wq", {})
 vim.api.nvim_create_user_command("W", "w", {})
+
+keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 
 -- Goto Diagnostics
 keymap.set("n", "<C-j>", function()
