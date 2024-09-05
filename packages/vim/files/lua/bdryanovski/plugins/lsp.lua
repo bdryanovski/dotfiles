@@ -9,6 +9,7 @@ return {
 	config = function()
 		-- import lspconfig plugin
 		local lspconfig = require("lspconfig")
+		local navic = require("nvim-navic")
 
 		-- import cmp-nvim-lsp plugin
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
@@ -17,6 +18,10 @@ return {
 
 		local opts = { noremap = true, silent = true }
 		local on_attach = function(client, bufnr)
+			if client.server_capabilities.documentSymbolProvider then
+				navic.attach(client, bufnr)
+			end
+
 			opts.buffer = bufnr
 
 			-- set keybinds
@@ -121,6 +126,17 @@ return {
 			flags = lsp_flags,
 			server = {
 				settings = {
+					javascript = {
+						inlayHints = {
+							includeInlayParameterNameHints = "all",
+							includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+							includeInlayFunctionParameterTypeHints = true,
+							includeInlayVariableTypeHints = true,
+							includeInlayPropertyDeclarationTypeHints = true,
+							includeInlayFunctionLikeReturnTypeHints = true,
+							includeInlayEnumMemberValueHints = true,
+						},
+					},
 					typescript = {
 						inlayHints = {
 							includeInlayParameterNameHints = "all",
@@ -128,7 +144,7 @@ return {
 							includeInlayFunctionParameterTypeHints = true,
 							includeInlayVariableTypeHints = false,
 							includeInlayPropertyDeclarationTypeHints = true,
-							includeInlayFunctionLikeReturnTypeHints = false,
+							includeInlayFunctionLikeReturnTypeHints = true,
 							includeInlayEnumMemberValueHints = true,
 						},
 					},
@@ -223,11 +239,64 @@ return {
 			on_attach = on_attach,
 			settings = { -- custom settings for lua
 				Lua = {
-					-- make the language server recognize "vim" global
+					completion = {
+						workspaceWord = true,
+						callSnippet = "Both",
+					},
+					misc = {
+						parameters = {
+							-- "--log-level=trace",
+						},
+					},
+					hint = {
+						enable = true,
+						setType = false,
+						paramType = true,
+						paramName = "Disable",
+						semicolon = "Disable",
+						arrayIndex = "Disable",
+					},
+					doc = {
+						privateName = { "^_" },
+					},
+					type = {
+						castNumberToInteger = true,
+					},
 					diagnostics = {
+
 						globals = { "vim" },
+						disable = { "incomplete-signature-doc", "trailing-space" },
+						-- enable = false,
+						groupSeverity = {
+							strong = "Warning",
+							strict = "Warning",
+						},
+						groupFileStatus = {
+							["ambiguity"] = "Opened",
+							["await"] = "Opened",
+							["codestyle"] = "None",
+							["duplicate"] = "Opened",
+							["global"] = "Opened",
+							["luadoc"] = "Opened",
+							["redefined"] = "Opened",
+							["strict"] = "Opened",
+							["strong"] = "Opened",
+							["type-check"] = "Opened",
+							["unbalanced"] = "Opened",
+							["unused"] = "Opened",
+						},
+						unusedLocalExclude = { "_*" },
+					},
+					format = {
+						enable = false,
+						defaultConfig = {
+							indent_style = "space",
+							indent_size = "2",
+							continuation_indent_size = "2",
+						},
 					},
 					workspace = {
+						checkThirdParty = false,
 						-- make language server aware of runtime files
 						library = {
 							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
