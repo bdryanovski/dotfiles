@@ -1,5 +1,25 @@
 return {
 	{
+		"sainnhe/sonokai",
+		priority = 1000,
+		config = function()
+			vim.g.sonokai_transparent_background = "0"
+			vim.g.sonokai_better_performance = "1"
+			vim.g.sonokai_enable_italic = "1"
+			vim.g.sonokai_disable_italic_comment = "0"
+			vim.g.sonokai_dim_inactive_windows = "1"
+			vim.g.sonokai_menu_selection_background = "green"
+			vim.g.sonokai_diagnostic_text_highlight = 1
+			vim.g.sonokai_diagnostic_line_highlight = 1
+			vim.g.sonokai_diagnostic_virtual_text = "colored"
+			vim.g.sonokai_current_word = "underline"
+			vim.g.sonokai_inlay_hints_background = "dimmed"
+			vim.g.sonokai_cursor = "red"
+			vim.g.sonokai_style = "andromeda"
+			-- vim.cmd.colorscheme("sonokai")
+		end,
+	},
+	{
 		"bluz71/vim-nightfly-guicolors",
 		priority = 1000, -- make sure to load this before all the other start plugins
 		config = function()

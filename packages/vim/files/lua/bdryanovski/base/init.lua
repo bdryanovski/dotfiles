@@ -20,6 +20,8 @@ cnf.autoindent = true
 cnf.wrap = false
 cnf.cursorline = true
 
+cnf.scrolloff = 10
+
 -- Searching
 cnf.grepprg = "rg --vimgrep"
 cnf.ignorecase = true
@@ -29,7 +31,7 @@ cnf.termguicolors = true
 cnf.background = "dark"
 cnf.signcolumn = "yes"
 
-cnf.backspace = "indent,eol,start"
+cnf.backspace = { "indent", "eol", "start" }
 
 cnf.clipboard:append("unnamedplus")
 
@@ -38,6 +40,11 @@ cnf.splitbelow = true
 cnf.splitkeep = "screen"
 
 cnf.swapfile = false
+
+-- Folding code
+cnf.foldlevel = 3
+cnf.foldmethod = "expr"
+cnf.foldexpr = "nvim_treesitter#foldexpr()"
 
 -- automatically update the content of the file when it change
 cnf.autoread = true
