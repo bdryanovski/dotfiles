@@ -1,0 +1,146 @@
+[user]
+	name = Bozhidar Dryanovski
+  email = bdryanovski@users.noreply.github.com
+	signingkey = 63497A6165220F56
+[core]
+	quotepath = false
+	editor = nvim
+	; pager = diff-so-fancy | less --tabs=4 -RFX
+  ; pager = delta
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  navigate = true
+  line-numbers = true
+  side-by-side = true
+[merge]
+  conflictstyle = diff3
+	tool = vimdiff
+[diff]
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
+[commit]
+	gpgSign = true
+[rebase]
+  autosquash = true
+  autostash = true
+  updaterefs = true
+[rerere]
+  enabled = true
+  autoupdate = true
+[alias]
+  s = status -s
+  commit = commit -s -S
+  merge-signed = !git merge --no-commit $1 && git commit -i -s -S
+  sign = commit --amend --no-edit -n -S -s
+  undo = reset --soft
+  cp = cherry-pick
+  co = checkout
+  whatever = !"git commit -m "whatever" --allow-empty --no-gpg-sign --no-verify; echo \\"\\n Progress not perfection! \\""
+
+  # Rebase my work for PR
+  done = !git rebase -i --autosquash $(git merge-base @ $(git rev-parse --verify origin/$(git rev-parse --abbrev-ref HEAD) 2>/dev/null && echo origin/$(git rev-parse --abbrev-ref HEAD) || echo origin/main))
+
+  # log
+  changelog = !" git log --oneline $(git describe --tags --abbrev=0 @^)..@ --pretty='- %s [%h] - %an' --no-merges"
+
+  history = log --pretty='format:%Cgreen%h%Creset - %Cred%cr%Creset %Cblue[%cn]%Creset - %s' --no-merges --name-status
+
+   # log with one line per item.
+  lo = log --oneline
+
+  # Show log with dates in our local timezone
+  log-local = log --date=local
+
+  # Show the log for my own user email
+  log-me = !git log --author $(git config user.email)
+
+  # Show the recent day
+  log-day = log --since yesterday
+
+  # Summarize your own changes since yesterday, suitable for a daily standup meeting.
+  log-standup = !git log --since yesterday --author $(git config user.email) --pretty=short
+
+  # Show who contributed, in descending order by number of commits
+  whorank = shortlog --summary --numbered --no-merges
+  # Show who contributed with summarized changes
+  who = shortlog --summary --
+     ##
+  # Reset & Undo
+  ##
+
+  # Reset and undo aliases are ways to move backwards on the commit chain.
+  # We find that novices prefer the wording "undo"; experts prefer "reset".
+  reset-commit       = reset --soft HEAD~1
+  reset-commit-hard  = reset --hard HEAD~1
+  reset-commit-clean = !git reset --hard HEAD~1 && git clean -fd
+  reset-to-pristine   = !git reset --hard && git clean -ffdx
+  reset-to-upstream  = !git reset --hard $(git upstream-name)
+
+  # Undo is simply a synonym for "reset" because "undo" can help novices.
+  undo-commit        = reset --soft HEAD~1
+  undo-commit-hard   = reset --hard HEAD~1
+  undo-commit-clean  = !git reset --hard HEAD~1 && git clean -fd
+  undo-to-pristine   = !git reset --hard && git clean -ffdx
+  undo-to-upstream   = !git reset --hard $(git upstream-name)
+
+  # Discard changes in a (list of) file(s) in working tree
+  discard = checkout --
+
+  ### SHELL SCRIPTING ALIASES ###
+
+  # Get the current branch name
+  branch-name = rev-parse --abbrev-ref HEAD
+
+  # Get name of the upstream branch
+  upstream-name = !git for-each-ref --format='%(upstream:short)' $(git symbolic-ref -q HEAD)
+
+  # Get the top level directory, regardless of what subdirectory we're in.
+  root = rev-parse --show-toplevel
+
+  # Execute shell scripts. Git always runs scripts in the top directory.
+  # For example "git exec pwd" will always show you the top directory.
+  exec = ! exec
+
+[hub]
+	protocol = https
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[color]
+	ui = true
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+[credential]
+	helper = osxkeychain
+[help]
+  autocorrect = prompt
+[init]
+	defaultBranch = main
+	templatedir = ~/.git_template
+[push]
+  default = simple
+	autoSetupRemote = true
+  followTags = true
+[fetch]
+  prune = true
+  pruneTags = true
+  all = true
+	auto = true
+[column]
+	ui = auto
+[branch]
+	; sort = -committerdate
+[color "branch"]
+	local = yellow
+	current = reset yellow
+	remote = green
+	upstream = brightwhite cyan
+[pager]
+	diff = diffnav --side-by-side

@@ -1,0 +1,6 @@
+
+2025/07/03 (23:00:22) | ===> btop++ v.1.4.0
+2025/07/03 (23:00:22) | ERROR: Stall in Runner thread, restarting!
+
+2025/08/04 (11:43:34) | ===> btop++ v.1.4.0
+2025/08/04 (11:43:34) | ERROR: Exception during Config::unlock() : unordered_map::at: key not found

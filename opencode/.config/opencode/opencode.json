@@ -1,0 +1,13 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "autoupdate": true,
+
+  "mcp": {
+    "customerio": {
+      "type": "remote",
+      "url": "https://mcp.customer.io/mcp",
+      "enabled": true,
+      "oauth": {}
+    }
+  }
+}
