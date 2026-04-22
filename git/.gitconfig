@@ -1,10 +1,11 @@
 [user]
 	name = Bozhidar Dryanovski
-  email = bdryanovski@users.noreply.github.com
+	email = bdryanovski@users.noreply.github.com
 	signingkey = 63497A6165220F56
 [core]
 	quotepath = false
 	editor = nvim
+	excludesfile = /Users/bdryanovski/.gitignore_global
 	; pager = diff-so-fancy | less --tabs=4 -RFX
   ; pager = delta
 [interactive]
@@ -22,7 +23,8 @@
   mnemonicPrefix = true
   renames = true
 [commit]
-	gpgSign = true
+  template = ~/.gitcommitmessage
+	gpgsign = true
 [rebase]
   autosquash = true
   autostash = true
@@ -144,3 +146,5 @@
 	upstream = brightwhite cyan
 [pager]
 	diff = diffnav --side-by-side
+[tag]
+	gpgsign = true

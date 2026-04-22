@@ -6,6 +6,18 @@
 stow .
 ```
 
+### Sync back
+
+```bash
+stow --adopt -t ~ zshrc git tmux btop atuin gh ghostty opencode
+```
+
+### Set
+
+```bash
+stow -t ~ zshrc git tmux btop atuin gh ghostty opencode
+```
+
 ### How to Use
 
 #### Stow all packages at once
