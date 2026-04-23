@@ -127,6 +127,15 @@ source "$ZSH_CUSTOM/alias.zsh"
 source "$ZSH_CUSTOM/functions.zsh"
 
 #
+# Load and track local device env that are globally set
+# but never version control them
+#
+if [[ -f "$ZSH_CUSTOM/local.env.zsh" ]]
+then
+  source "$ZSH_CUSTOM/local.env.zsh"
+fi
+
+#
 # ZSH History settings
 #
 HISTSIZE=5000
