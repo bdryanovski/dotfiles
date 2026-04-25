@@ -24,7 +24,7 @@
   renames = true
 [commit]
   template = ~/.gitcommitmessage
-	gpgsign = true
+  ;gpgsign = true
 [rebase]
   autosquash = true
   autostash = true

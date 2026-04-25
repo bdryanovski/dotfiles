@@ -1,66 +1,97 @@
 # dotfiles
 
-### Setup
+Personal dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/).
+
+## Packages
+
+- **atuin** - shell history sync
+- **btop** - system monitor
+- **gh** - GitHub CLI
+- **ghostty** - terminal emulator
+- **git** - git config and hooks
+- **opencode** - OpenCode AI tool
+- **tmux** - terminal multiplexer
+- **zshrc** - zsh shell config
+
+## Install
+
+Clone the repo and run stow. Existing files will be removed and replaced with symlinks.
 
 ```bash
-stow .
+git clone git@github.com:bdryanovski/dotfiles.git ~/Github/dotfiles
+cd ~/Github/dotfiles
+
+# Remove existing config files that would conflict
+rm -f ~/.zshrc ~/.gitconfig
+rm -rf ~/.git_template ~/.zshrc_custom
+rm -f ~/.config/atuin/atuin-receipt.json ~/.config/atuin/config.toml
+rm -f ~/.config/gh/config.yml ~/.config/gh/hosts.yml
+rm -f ~/.config/ghostty/config
+rm -f ~/.config/opencode/opencode.json
+rm -rf ~/.config/opencode/agent
+rm -rf ~/.config/tmux
+rm -f ~/.config/btop.conf ~/.config/btop.log
+
+# Stow all packages
+stow -t ~ */
 ```
 
-### Sync back
+## Uninstall
+
+Remove all symlinks:
 
 ```bash
-stow --adopt -t ~ zshrc git tmux btop atuin gh ghostty opencode
+cd ~/Github/dotfiles
+stow -D -t ~ */
 ```
 
-### Set
+## Sync back
+
+Adopt local changes into the repo (overwrites repo files with your local versions):
 
 ```bash
-stow -t ~ zshrc git tmux btop atuin gh ghostty opencode
+cd ~/Github/dotfiles
+stow --adopt -t ~ */
 ```
 
-### How to Use
+## Usage
 
-#### Stow all packages at once
+### Stow a single package
 
 ```bash
-cd ~/dotfiles
-stow */
+stow -t ~ git
 ```
 
-#### Or stow individual packages
+### Remove a single package
 
 ```bash
-stow git ghostty tmux zshrc
+stow -D -t ~ git
 ```
 
-#### Remove symlinks for a package
+### Dry run (preview changes)
 
 ```bash
-stow -D git
+stow -n -v -t ~ */
 ```
 
-#### Preview what would happen (dry run)
+## Adding new packages
 
-```bash
-stow -n -v git
-```
-
-### Adding New Tools
-
-When adding a new tool, follow this pattern:
-
-#### For ~/.config apps (modern XDG style)
+### For `~/.config` apps (XDG style)
 
 ```bash
 mkdir -p newtool/.config/newtool
+# put config files in newtool/.config/newtool/
 ```
-
-put config files in newtool/.config/newtool/
 
 ### For traditional dotfiles
 
 ```bash
 mkdir -p vim
+# put .vimrc directly in vim/
 ```
 
-put .vimrc directly in vim/
+Then stow the new package:
+
+```bash
+stow -t ~ newtool
+```
