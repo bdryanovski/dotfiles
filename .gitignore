@@ -1,3 +1,4 @@
 .DS_Store
 .vscode/
 zshrc/.zshrc_custom/local.env.zsh
+gh/.config/gh/hosts.yml
