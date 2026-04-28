@@ -209,7 +209,7 @@ configure_macos_defaults() {
 # --------------------------------------------------------------------------- #
 
 # Stow packages to skip on macOS (Linux/Hyprland only)
-SKIP_PACKAGES=("hypr")
+SKIP_PACKAGES=("hypr", "wofi", "waybar")
 
 stow_dotfiles() {
     info "Stowing dotfiles..."
