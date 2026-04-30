@@ -4,9 +4,18 @@
 	signingkey = 63497A6165220F56
 [core]
 	quotepath = false
+  compression = 9
+  preloadindex = true
 	editor = nvim
 	; pager = diff-so-fancy | less --tabs=4 -RFX
   ; pager = delta
+[advice]  # disable advices
+    addEmptyPathspec = false
+    pushNonFastForward = false
+    statusHints = false
+[blame]
+    coloring = highlightRecent
+    date = relative
 [interactive]
   diffFilter = delta --color-only
 [delta]
@@ -20,7 +29,17 @@
   algorithm = histogram
   colorMoved = plain
   mnemonicPrefix = true
-  renames = true
+  context = 3  # less context in diffs
+  renames = copies  # detect copies as renames in diffs
+  interHunkContext = 10  # merge near hunks in diffs
+[log]
+    abbrevCommit = true  # short commits
+    graphColors  = blue,yellow,cyan,magenta,green,red
+[status]
+    branch = true
+    short = true
+    showStash = true
+    showUntrackedFiles = all  # show individual untracked files
 [commit]
   template = ~/.gitcommitmessage
   ;gpgsign = true
@@ -122,11 +141,13 @@
   autocorrect = prompt
 [init]
 	defaultBranch = main
-	templatedir = ~/.git_template
 [push]
-  default = simple
+  default = current  # push only current branch by default
 	autoSetupRemote = true
   followTags = true
+[pull]
+    rebase = true
+    default = current
 [fetch]
   prune = true
   pruneTags = true
@@ -135,7 +156,7 @@
 [column]
 	ui = auto
 [branch]
-	; sort = -committerdate
+    sort = -committerdate
 [color "branch"]
 	local = yellow
 	current = reset yellow
@@ -145,9 +166,34 @@
 	diff = diffnav --side-by-side
 [tag]
 	gpgsign = true
+    sort = -taggerdate
 [credential "https://github.com"]
 	helper =
 	helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
 	helper =
 	helper = !/usr/bin/gh auth git-credential
+
+# Colors
+[color "blame"]
+    highlightRecent = black bold,1 year ago,white,1 month ago,default,7 days ago,blue
+
+[color "branch"]
+    current  = magenta
+    local    = default
+    remote   = yellow
+    upstream = green
+    plain    = blue
+
+[color "diff"]
+    meta       = black bold
+    frag       = magenta
+    context    = white
+    whitespace = yellow reverse
+    old        = red
+
+[color.decorate]
+    HEAD = red
+    branch = blue
+    tag = yellow
+    remoteBranch = magenta

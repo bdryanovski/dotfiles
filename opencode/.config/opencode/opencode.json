@@ -8,6 +8,12 @@
       "url": "https://mcp.customer.io/mcp",
       "enabled": true,
       "oauth": {}
+    },
+    "linear": {
+      "type": "remote",
+      "url": "https://mcp.linear.app/mcp",
+      "enabled": true,
+      "oauth": {}
     }
   }
 }

@@ -208,7 +208,3 @@ export PATH=/Users/bdryanovski/.termcast/compiled/tuitube/bin:$PATH
 export PATH="/Users/bdryanovski/.local/bin:$PATH"
 eval "$(but completions zsh)"
 alias get_idf=". $HOME/esp/esp-idf/export.sh"
-
-
-# opencode
-export PATH=/Users/bdryanovski/.opencode/bin:$PATH
