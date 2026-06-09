@@ -1,28 +1,6 @@
-
-#
-# Google Cloud SDK Shell integration
-#
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/bdryanovski/tools/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/bdryanovski/tools/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/bdryanovski/tools/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/bdryanovski/tools/google-cloud-sdk/completion.zsh.inc'; fi
-
-export PATH="$PATH:/Users/bdryanovski/.kit/bin"
-
-# export PATH="/opt/homebrew/opt/ruby@2.7/bin:$PATH"
-
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 
 eval "$(rbenv init - zsh)"
-# export PYENV_ROOT="$HOME/.pyenv"
-# export PATH="$PYENV_ROOT/bin:$PATH"
-# if command -v pyenv 1>/dev/null 2>&1; then
-#   eval "$(pyenv init --path)"
-#   eval "$(pyenv init -)"
-# fi
-#
 
 # pnpm
 export PNPM_HOME="/Users/bdryanovski/Library/pnpm"
@@ -39,8 +17,6 @@ esac
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-
-PATH=~/.console-ninja/.bin:$PATH
 
 #
 # NVM
@@ -73,18 +49,3 @@ function nvm_auto_switch {
 
 autoload -U add-zsh-hook
 add-zsh-hook chpwd nvm_auto_switch
-
-
-#
-# skia and depot_tools
-#
-export PATH="${PWD}/depot_tools:${PATH}"
-
-#
-#
-#
-source $HOME/.local/bin/env
-
-
-# Terraform
-# terraform -install-autocomplete

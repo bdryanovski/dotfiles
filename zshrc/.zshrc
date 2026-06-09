@@ -27,22 +27,6 @@ for dump in ~/.zcompdump(N.mh+24); do
   compinit
 done
 compinit -C
-#
-# THEME
-#
-if [ ! -d "$ZSH_CUSTOM/themes/spaceship-prompt/" ]
-then
-  echo "Installing Spaceship theme ..."
-  git clone https://github.com/spaceship-prompt/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
-
-  # Macbook M1 fix
-  if [[ $(uname -m) == 'arm64' ]]; then
-    ln -sf "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh" "$(brew --prefix)/share/zsh/site-functions/prompt_spaceship_setup"
-
-  fi
-
-  # zsh "$ZSH_CUSTOM/themes/spaceship-prompt/scripts/install.sh"
-fi
 
 #
 # Starship
@@ -57,33 +41,6 @@ then
 fi
 #
 eval "$(starship init zsh)"
-
-# Make sure to recreate the link only if not done already
-# if [ ! -f "${ZDOTDIR:-$HOME}/.zfunctions/prompt_spaceship_setup" ]
-# then
-#   ln -sf "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh" "${ZDOTDIR:-$HOME}/.zfunctions/prompt_spaceship_setup"
-# fi
-#
-# prompt spaceship
-#
-# SPACESHIP_PROMPT_ORDER=(
-#   user
-#   dir
-#   git
-#   exec_time
-#   line_sep
-#   battery
-#   exit_code
-#   char
-# )
-#
-# SPACESHIP_CHAR_SYMBOL=🍺
-# SPACESHIP_CHAR_SUFFIX=" "
-# SPACESHIP_BATTERY_SHOW=true
-# SPACESHIP_BATTERY_THRESHOLD=40
-#
-# PLUGINS
-#
 
 #
 # Extend zsh with Syntax Colors
@@ -206,5 +163,4 @@ export PATH=/Users/bdryanovski/.termcast/compiled/tuitube/bin:$PATH
 
 # Added by GitButler installer
 export PATH="/Users/bdryanovski/.local/bin:$PATH"
-eval "$(but completions zsh)"
 alias get_idf=". $HOME/esp/esp-idf/export.sh"

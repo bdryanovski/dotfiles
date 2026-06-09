@@ -167,11 +167,6 @@
 [tag]
 	gpgsign = true
     sort = -taggerdate
-[credential "https://github.com"]
-	helper = !/usr/bin/gh auth git-credential
-[credential "https://gist.github.com"]
-	helper = !/usr/bin/gh auth git-credential
-
 # Colors
 [color "blame"]
     highlightRecent = black bold,1 year ago,white,1 month ago,default,7 days ago,blue
