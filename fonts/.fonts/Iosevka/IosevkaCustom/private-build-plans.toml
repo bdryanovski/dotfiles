@@ -1,0 +1,56 @@
+[buildPlans.IosevkaCustom]
+family = "Iosevka Custom"
+spacing = "fontconfig-mono"
+serifs = "sans"
+noCvSs = true
+exportGlyphNames = false
+
+  [buildPlans.IosevkaCustom.variants]
+  inherits = "ss05"
+
+    [buildPlans.IosevkaCustom.variants.design]
+    one = "no-base-long-top-serif"
+    two = "straight-neck-serifed"
+    three = "flat-top-serifless"
+    four = "closed-non-crossing-serifless"
+    five = "upright-flat-serifless"
+    six = "straight-bar"
+    seven = "straight-serifless"
+    eight = "two-circles"
+    nine = "straight-bar"
+    zero = "slashed-split"
+    braille-dot = "square"
+    ellipsis-density = "dense"
+    tilde = "low"
+    brace = "straight"
+    guillemet = "curly"
+    number-sign = "slanted-open"
+    ampersand = "closed"
+    at = "fourfold"
+    percent = "rings-segmented-slash"
+    bar = "force-upright"
+    question = "corner"
+    lig-ltgteq = "flat"
+
+  [buildPlans.IosevkaCustom.ligations]
+  inherits = "javascript"
+
+[buildPlans.IosevkaCustom.weights.Regular]
+shape = 400
+menu = 400
+css = 400
+
+[buildPlans.IosevkaCustom.weights.Bold]
+shape = 700
+menu = 700
+css = 700
+
+[buildPlans.IosevkaCustom.weights.Thin]
+shape = 100
+menu = 100
+css = 100
+
+[buildPlans.IosevkaCustom.weights.Heavy]
+shape = 900
+menu = 900
+css = 900

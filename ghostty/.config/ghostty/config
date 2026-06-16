@@ -3,6 +3,7 @@
 #
 # https://ghostty.zerebos.com/
 # theme = Catppuccin Macchiato
+# custom-shader = ./shaders/shader.glsl
 
 cursor-style = block
 cursor-style-blink = true
