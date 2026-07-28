@@ -72,6 +72,7 @@ source "$ZSH_CUSTOM/plugins/git.plugin.zsh"
 #
 MWFT="$(cat "$ZSH_CUSTOM/logo.txt")"
 echo "$MWFT"
+echo "                [ Progress not perfection... ]"
 
 #
 # Aliases
@@ -126,15 +127,6 @@ autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
 
-# Added by Windsurf
-export PATH="/Users/bdryanovski/.codeium/windsurf/bin:$PATH"
-export PATH="/opt/homebrew/opt/mysql@8.0/bin:$PATH"
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/bdryanovski/.lmstudio/bin"
-# End of LM Studio CLI section
-
-
 # pnpm
 export PNPM_HOME="/Users/bdryanovski/Library/pnpm"
 case ":$PATH:" in
@@ -147,20 +139,10 @@ esac
 
 eval "$(atuin init zsh)"
 
-# bun completions
-[ -s "/Users/bdryanovski/.bun/_bun" ] && source "/Users/bdryanovski/.bun/_bun"
-
-
 # Go bin
 export PATH="$PATH:/opt/homebrew/opt/go/libexec/bin:$HOME/go/bin"
-
-export PATH="/opt/homebrew/opt/php@8.3/bin:$PATH"
-export PATH="/opt/homebrew/opt/php@8.3/sbin:$PATH"
-
-# tuitube
-export PATH=/Users/bdryanovski/.termcast/compiled/tuitube/bin:$PATH
-. "/Users/bdryanovski/.deno/env"
 
 # Added by GitButler installer
 export PATH="/Users/bdryanovski/.local/bin:$PATH"
 alias get_idf=". $HOME/esp/esp-idf/export.sh"
+export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"

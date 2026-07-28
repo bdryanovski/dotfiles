@@ -150,7 +150,7 @@
     default = current
 [fetch]
   prune = true
-  pruneTags = true
+	pruneTags = true
   all = true
 	auto = true
 [column]
@@ -190,3 +190,5 @@
     branch = blue
     tag = yellow
     remoteBranch = magenta
+[remote "origin"]
+	tagOpt = --tags

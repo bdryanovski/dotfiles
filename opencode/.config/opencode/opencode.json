@@ -1,7 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "autoupdate": true,
-
   "mcp": {
     "customerio": {
       "type": "remote",
@@ -15,5 +14,6 @@
       "enabled": true,
       "oauth": {}
     }
-  }
+  },
+  "shell": "zsh"
 }

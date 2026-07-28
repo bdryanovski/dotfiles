@@ -11,13 +11,6 @@ esac
 # pnpm end
 
 
-# bun completions
-[ -s "/Users/bdryanovski/.bun/_bun" ] && source "/Users/bdryanovski/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
 #
 # NVM
 #
