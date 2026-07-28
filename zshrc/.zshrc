@@ -141,8 +141,3 @@ eval "$(atuin init zsh)"
 
 # Go bin
 export PATH="$PATH:/opt/homebrew/opt/go/libexec/bin:$HOME/go/bin"
-
-# Added by GitButler installer
-export PATH="/Users/bdryanovski/.local/bin:$PATH"
-alias get_idf=". $HOME/esp/esp-idf/export.sh"
-export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
