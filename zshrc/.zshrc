@@ -115,6 +115,14 @@ if command -v zoxide &> /dev/null; then
   eval "$(zoxide init zsh)"
 fi
 
+#
+# TMUX reatach or create new session
+#
+#if command -v tmux &> /dev/null && [ -z "${TMUX}" ] && [[ -o interactive ]] && [[ ! "${TERM}" =~ (screen|tmux) ]]; then
+#    # attach to an existing session, or create a new one if none exist
+#    tmux attach 2> /dev/null || tmux
+#fi
+
 source "$ZSH_CUSTOM/externals.zsh"
 
 
@@ -128,3 +136,6 @@ if [[ -f "$ZSH_CUSTOM/local.env.zsh" ]]
 then
   source "$ZSH_CUSTOM/local.env.zsh"
 fi
+
+# tmux-spotlight standalone launch
+alias tsp='/Users/bdryanovski/.config/tmux/plugins/tmux-spotlight/scripts/switcher.sh'
