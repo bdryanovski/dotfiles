@@ -13,6 +13,21 @@
       "url": "https://mcp.linear.app/mcp",
       "enabled": true,
       "oauth": {}
+    },
+    "mixpanel": {
+      "type": "remote",
+      "url": "https://mcp-eu.mixpanel.com/mcp",
+      "enabled": true,
+      "oauth": {}
+    },
+    "voy": {
+      "type": "remote",
+      "url": "http://localhost:3000/mcp",
+      "enable": true,
+      "headers": {
+        "Authorization": "Bearer voy_VcRp6a1So2ICaSiLmBKLhxRgHX9eWHh5",
+        "x-voy-allow-writes": "true"
+      }
     }
   },
   "shell": "zsh"

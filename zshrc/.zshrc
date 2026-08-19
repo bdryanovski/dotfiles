@@ -67,12 +67,13 @@ source "$ZSH_CUSTOM/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 #
 # Loading additional plugins
 #
+# DEPRECATED: soon to be removed
+#
 source "$ZSH_CUSTOM/plugins/git.plugin.zsh"
 
 #
 MWFT="$(cat "$ZSH_CUSTOM/logo.txt")"
 echo "$MWFT"
-echo "                [ Progress not perfection... ]"
 
 #
 # Aliases
@@ -84,14 +85,6 @@ source "$ZSH_CUSTOM/alias.zsh"
 #
 source "$ZSH_CUSTOM/functions.zsh"
 
-#
-# Load and track local device env that are globally set
-# but never version control them
-#
-if [[ -f "$ZSH_CUSTOM/local.env.zsh" ]]
-then
-  source "$ZSH_CUSTOM/local.env.zsh"
-fi
 
 #
 # ZSH History settings
@@ -113,10 +106,12 @@ setopt hist_find_no_dups
 #
 # Ctrl+r - find in previous command
 #
-eval "$(fzf --zsh)"
+if command -v fzf &> /dev/null; then
+  eval "$(fzf --zsh)"
+fi
 
 
-if hash zoxide; then
+if command -v zoxide &> /dev/null; then
   eval "$(zoxide init zsh)"
 fi
 
@@ -124,20 +119,12 @@ source "$ZSH_CUSTOM/externals.zsh"
 
 
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
-
-# pnpm
-export PNPM_HOME="/Users/bdryanovski/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
-. "$HOME/.atuin/bin/env"
-
-eval "$(atuin init zsh)"
-
-# Go bin
-export PATH="$PATH:/opt/homebrew/opt/go/libexec/bin:$HOME/go/bin"
+#
+# Load and track local device env that are globally set
+# but never version control them
+#
+if [[ -f "$ZSH_CUSTOM/local.env.zsh" ]]
+then
+  source "$ZSH_CUSTOM/local.env.zsh"
+fi
