@@ -4,22 +4,23 @@ Personal dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/).
 
 ## Packages
 
-| Package      | Description                        | Platforms     |
-|--------------|------------------------------------|---------------|
-| **atuin**    | Shell history sync                 | Arch, macOS   |
-| **btop**     | System monitor                     | Arch, macOS   |
-| **gh**       | GitHub CLI                         | Arch, macOS   |
-| **ghostty**  | Terminal emulator                  | Arch, macOS   |
-| **git**      | Git config and hooks               | Arch, macOS   |
-| **hypr**     | Hyprland, hyprlock, hypridle       | Arch only     |
-| **opencode** | OpenCode AI tool                   | Arch, macOS   |
-| **tmux**     | Terminal multiplexer               | Arch, macOS   |
-| **zshrc**    | Zsh shell config                   | Arch, macOS   |
+| Package      | Description                             | Platforms   |
+| ------------ | --------------------------------------- | ----------- |
+| **atuin**    | Shell history sync                      | Arch, macOS |
+| **btop**     | System monitor                          | Arch, macOS |
+| **gh**       | GitHub CLI                              | Arch, macOS |
+| **ghostty**  | Terminal emulator                       | Arch, macOS |
+| **git**      | Git config and hooks                    | Arch, macOS |
+| **hypr**     | Hyprland, hyprlock, hypridle            | Arch only   |
+| **opencode** | OpenCode AI tool                        | Arch, macOS |
+| **tmux**     | Terminal multiplexer                    | Arch, macOS |
+| **zshrc**    | Zsh shell config                        | Arch, macOS |
+| **agents**   | Codding Agents skills and configuration | Arch, macOS |
 
 ## Quick Setup
 
-Clone the repo and run the setup script for your platform. Each script installs all
-dependencies, stows every package, and applies platform-specific settings.
+Clone the repo and run the setup script for your platform. Each script installs all dependencies,
+stows every package, and applies platform-specific settings.
 
 ```bash
 git clone git@github.com:bdryanovski/dotfiles.git ~/Github/dotfiles
@@ -73,6 +74,7 @@ rm -rf ~/.config/opencode/agent
 rm -rf ~/.config/tmux
 rm -f ~/.config/btop.conf ~/.config/btop.log
 rm -rf ~/.config/hypr
+rm -rf ~/.agents
 
 # Stow all packages
 stow -t ~ */
