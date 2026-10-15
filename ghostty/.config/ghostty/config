@@ -7,6 +7,12 @@
 # theme = Catppuccin Macchiato
 # custom-shader = ./shaders/shader.glsl
 
+clipboard-read = allow
+macos-icon = retro
+quick-terminal-animation-duration = 2
+window-theme = ghostty
+theme=Grape
+
 cursor-style = block
 cursor-style-blink = true
 
@@ -27,16 +33,11 @@ adjust-cell-height=1
 shell-integration = zsh
 quick-terminal-position = bottom
 quick-terminal-screen = mouse
-clipboard-read = allow
-window-theme = dark
 background-opacity = 0.95
 background-blur = 30
 cursor-style = block_hollow
 cursor-style-blink = true
-macos-icon = holographic
-macos-icon-ghost-color = #338E8E
 
-#theme = Nocturnal Winter
 #background = #0d0d17
 #foreground = #e6e5e5
 #selection-background = #adbdd0
