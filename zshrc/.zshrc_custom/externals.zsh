@@ -1,7 +1,3 @@
-export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-
-eval "$(rbenv init - zsh)"
-
 # pnpm
 export PNPM_HOME="/Users/bdryanovski/Library/pnpm"
 case ":$PATH:" in
