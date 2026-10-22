@@ -83,3 +83,39 @@ palette = 12=#7aa2f7
 palette = 13=#bb9af7
 palette = 14=#7dcfff
 palette = 15=#c0caf5
+
+#macos-titlebar-style = tabs  # disabled by ghostty-config: transparent is the default
+
+#macos-titlebar-style = tabs  # disabled by ghostty-config: transparent is the default
+
+#macos-titlebar-style = native  # disabled by ghostty-config: transparent is the default
+
+window-decoration = auto
+
+#custom-shader = /Users/bdryanovski/.config/ghostty/shaders/starfield.glsl  # disabled by ghostty-config: no shader
+
+#custom-shader = /Users/bdryanovski/.config/ghostty/shaders/retro-terminal.glsl  # disabled by ghostty-config: no shader
+
+#custom-shader = /Users/bdryanovski/.config/ghostty/shaders/underwater.glsl  # disabled by ghostty-config: no shader
+
+#custom-shader = /Users/bdryanovski/.config/ghostty/shaders/cursor_smear.glsl  # disabled by ghostty-config: no shader
+
+#custom-shader = /Users/bdryanovski/.config/ghostty/shaders/cursor_smear_fade.glsl  # disabled by ghostty-config: no shader
+
+#custom-shader = /Users/bdryanovski/.config/ghostty/shaders/bloom.glsl  # disabled by ghostty-config: no shader
+
+#custom-shader = /Users/bdryanovski/.config/ghostty/shaders/crt.glsl  # disabled by ghostty-config: no shader
+
+#custom-shader = /Users/bdryanovski/.config/ghostty/shaders/retro-terminal.glsl  # disabled by ghostty-config: no shader
+
+#custom-shader = /Users/bdryanovski/.config/ghostty/shaders/starfield.glsl  # disabled by ghostty-config: no shader
+
+#custom-shader = /Users/bdryanovski/.config/ghostty/shaders/vhs.glsl  # disabled by ghostty-config: no shader
+
+#custom-shader = /Users/bdryanovski/.config/ghostty/shaders/underwater.glsl  # disabled by ghostty-config: no shader
+
+#custom-shader = /Users/bdryanovski/.config/ghostty/shaders/crt.glsl  # disabled by ghostty-config: no shader
+
+#custom-shader = /Users/bdryanovski/.config/ghostty/shaders/bloom.glsl  # disabled by ghostty-config: no shader
+
+custom-shader = /Users/bdryanovski/.config/ghostty/shaders/cursor_blaze.glsl
