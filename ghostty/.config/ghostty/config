@@ -118,4 +118,4 @@ window-decoration = auto
 
 #custom-shader = /Users/bdryanovski/.config/ghostty/shaders/bloom.glsl  # disabled by ghostty-config: no shader
 
-custom-shader = /Users/bdryanovski/.config/ghostty/shaders/cursor_blaze.glsl
+custom-shader = ~/.config/ghostty/shaders/cursor_blaze.glsl
