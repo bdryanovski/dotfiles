@@ -4,8 +4,8 @@
 alias myip='ifconfig | grep "inet " | grep -v 127.0.0.1'
 alias getNodeSize='find . -name "node_modules" -type d -prune -print | xargs du -chs'
 
-alias ll="exa -a -l --no-user --no-time --git -s type --icons"
-alias l="exa -a -s type --icons"
+alias ll="eza -a -l --no-user --no-time --git -s type --icons"
+alias l="eza -a -s type --icons"
 alias ls="l"
 
 #

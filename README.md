@@ -17,68 +17,86 @@ Personal dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/).
 | **zshrc**    | Zsh shell config                        | Arch, macOS |
 | **agents**   | Codding Agents skills and configuration | Arch, macOS |
 
+## Scripts
+
+| Script           | Job                                                        |
+| ---------------- | ---------------------------------------------------------- |
+| `install.sh`     | Install tools for this platform, then sync config          |
+| `sync.sh`        | Symlink (stow) the config into `$HOME`                      |
+| `lib/common.sh`  | Shared helpers. Sourced by the others. Do not run directly  |
+
 ## Quick Setup
 
-Clone the repo and run the setup script for your platform. Each script installs all dependencies,
-stows every package, and applies platform-specific settings.
+Clone the repo and run one command. It works on macOS and Arch Linux.
 
 ```bash
 git clone git@github.com:bdryanovski/dotfiles.git ~/Github/dotfiles
 cd ~/Github/dotfiles
+./install.sh
 ```
 
-### Arch Linux (+ Hyprland)
+What `install.sh` does:
+
+- Bootstraps the platform. macOS: Xcode CLI, Homebrew, macOS defaults. Arch: pacman update, yay, Hyprland ecosystem.
+- Installs each wanted tool. It skips tools that are already present.
+- Syncs config with `sync.sh`.
+- Sets zsh as the default shell.
+
+It is idempotent. Run it again any time.
 
 ```bash
-./arch.sh
+./install.sh              # bootstrap + install all wanted tools + sync
+./install.sh atuin tmux   # only these tools (no bootstrap)
+./install.sh --no-sync    # install tools only, skip stow
+./install.sh --list       # show wanted tools and their config package
 ```
 
-What it does:
+## Choose what you want
 
-- Installs pacman packages (stow, git, zsh, tmux, btop, gh, hyprland ecosystem, dev tools)
-- Installs **yay** (AUR helper) and AUR packages (ghostty)
-- Stows all packages (including hypr/)
-- Sets zsh as the default shell
-- Configures fast key repeat via Hyprland (`repeat_rate=75`, `repeat_delay=200`)
-
-### macOS
+Edit the `declare_wants` section near the top of `install.sh`. Add or remove one
+line per tool.
 
 ```bash
-./macos.sh
+#   want <cmd> <install> [stow-pkg]
+want tmux     pm                            tmux
+want gh       pm:gh:github-cli:github-cli   gh
+want atuin    "sh:curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh"   atuin
+want ghostty  cask                          ghostty
+want_config   agents                        # config only, nothing to install
 ```
 
-What it does:
+Install methods:
 
-- Installs Xcode Command Line Tools
-- Installs **Homebrew** and formulae (stow, git, zsh, tmux, btop, gh, node, python, rust)
-- Installs casks (ghostty)
-- Configures macOS defaults (fast key repeat, Finder, Dock, trackpad, screenshots)
-- Stows all packages (skips hypr/ — Linux only)
-- Sets Homebrew zsh as the default shell
+- `pm` - package manager, same name on every platform.
+- `pm:brew:apt:pacman` - per-manager names. An empty slot reuses `<cmd>`.
+- `cask` - GUI app. Homebrew cask on macOS, AUR on Arch.
+- `sh:<command>` - run this shell command (for tools with their own installer).
 
-## Manual Install
+The optional third field is the stow package to link. Use `-` for none.
 
-If you prefer to set things up manually:
+## Sync (one command)
+
+Use `sync.sh` to make this machine match the repo. It skips Linux-only packages
+on macOS and is safe by default. On a conflict (a real file where a symlink
+should go) it aborts and lists the files. Nothing gets deleted.
 
 ```bash
 cd ~/Github/dotfiles
-
-# Remove existing config files that would conflict
-rm -f ~/.zshrc ~/.gitconfig
-rm -rf ~/.git_template ~/.zshrc_custom
-rm -f ~/.config/atuin/atuin-receipt.json ~/.config/atuin/config.toml
-rm -f ~/.config/gh/config.yml ~/.config/gh/hosts.yml
-rm -f ~/.config/ghostty/config
-rm -f ~/.config/opencode/opencode.json
-rm -rf ~/.config/opencode/agent
-rm -rf ~/.config/tmux
-rm -f ~/.config/btop.conf ~/.config/btop.log
-rm -rf ~/.config/hypr
-rm -rf ~/.agents
-
-# Stow all packages
-stow -t ~ */
+./sync.sh              # sync all packages for this platform
+./sync.sh git tmux    # sync only named packages
+./sync.sh --dry-run   # preview, change nothing
 ```
+
+Resolve conflicts:
+
+```bash
+./sync.sh --backup    # move machine files to ~/.dotfiles-backup, repo wins
+./sync.sh --adopt     # pull machine files into the repo, machine wins
+./sync.sh --delete    # remove the symlinks (unstow)
+```
+
+- `--backup` keeps your old files in a timestamped dir under `~/.dotfiles-backup`.
+- `--adopt` overwrites repo files. Review with `git diff` before you commit.
 
 ## Uninstall
 
@@ -86,16 +104,17 @@ Remove all symlinks:
 
 ```bash
 cd ~/Github/dotfiles
-stow -D -t ~ */
+./sync.sh --delete
 ```
 
 ## Sync back
 
-Adopt local changes into the repo (overwrites repo files with your local versions):
+Pull local changes into the repo. This overwrites repo files with your local
+versions. Review with `git diff` before you commit.
 
 ```bash
 cd ~/Github/dotfiles
-stow --adopt -t ~ */
+./sync.sh --adopt
 ```
 
 ## Usage

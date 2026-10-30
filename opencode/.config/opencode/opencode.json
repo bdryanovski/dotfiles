@@ -28,6 +28,16 @@
         "Authorization": "Bearer voy_VcRp6a1So2ICaSiLmBKLhxRgHX9eWHh5",
         "x-voy-allow-writes": "true"
       }
+    },
+    "aws-mcp": {
+      "type": "local",
+      "command": [
+        "uvx",
+        "mcp-proxy-for-aws@latest",
+        "https://aws-mcp.us-east-1.api.aws/mcp",
+        "--metadata",
+        "INSTALL_SOURCE=aws-cli"
+      ]
     }
   },
   "shell": "zsh"
